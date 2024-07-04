@@ -130,6 +130,74 @@ class SideBarActions {
         )
     }
 
+    doorType = () => {
+        return(
+            `<ul class="door-types">
+                        <div class="door-type">
+                        <span class="selected">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                  </svg>                                  
+                            </span>
+                            <img src="./assets/images/door-types/57b92214-fd08-4a49-9381-b6c2bd8a0f8c.png" alt="">
+                            <small>Front door</small>
+                        </div>
+                        <div class="door-type">
+                            <img src="./assets/images/door-types/70bae32b-aa87-47e7-b397-4a3b34a40afe.png" alt="">
+                            <small>Back door</small>
+                        </div>
+                        <div class="door-type">
+                            <img src="./assets/images/door-types/9ff9be81-e5be-4711-aa29-610a8514d7fa.png" alt="">
+                            <small>Patio door</small>
+                        </div>
+                        
+                     </ul>`
+        )
+    }
+
+    color = () => {
+        return(
+            `<ul class="colors">
+                        <li class="color">
+                        <span class="selected">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                  </svg>                                  
+                            </span>
+                            <small>#4F3731</small>
+                        </li>
+                        <li class="color">
+                            <small>#324035</small>
+                        </li>
+                        <li class="color">
+                            <small>#742E30</small>
+                        </li>
+                        <li class="color">
+                            <small>#93949E</small>
+                        </li>
+                        <li class="color">
+                            <small>#2C3B44</small>
+                        </li>
+                        <li class="color">
+                            <small>#3F434C</small>
+                        </li>
+                        <li class="color">
+                            <small>#AD8C4D</small>
+                        </li>
+                        <li class="color">
+                            <small>#742E31</small>
+                        </li>
+                        <li class="color">
+                            <small>#324034</small>
+                        </li>
+                        <li class="color">
+                            <small>#2B4939</small>
+                        </li>
+                     </ul>
+            `
+        )
+    }
+
     showSettingsModal = (title, id) => {
         // if title matches show settings for title
         this.sidebarSettingsModal.scrollTop = 0;
@@ -139,9 +207,9 @@ class SideBarActions {
         }else if(id === 1){
             this.sidebarModalContents.innerHTML = this.housefront()
         }else if(id === 2){
-            this.sidebarModalContents.innerHTML = ''
+            this.sidebarModalContents.innerHTML = this.doorType()
         }else if(id === 3){
-            this.sidebarModalContents.innerHTML = ''
+            this.sidebarModalContents.innerHTML = this.color()
         }else if(id === 4){
             this.sidebarModalContents.innerHTML = ''
         }else if(id === 5){
