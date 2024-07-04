@@ -1,0 +1,410 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.conf_body{
+    height: 100vh;
+    overflow: hidden;
+}
+
+.conf_header{
+    display: none;
+    padding: 14px 0;
+    background: var(--main-black);
+    color: #fff
+}
+
+.conf_nav-menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.conf_nav-menu a{
+    color: var(--main-white)
+}
+
+.conf_nav-menu button{
+    background: transparent;
+    border: none;
+}
+
+.conf_nav-menu svg{
+    width: 30px;
+    color: var(--main-white)
+}
+
+.swf_logo{
+    color: #fff;
+    text-align: center;
+    margin: 0 0 50px;
+    font-size: 2rem;
+}
+
+.conf_main{
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.conf_main .conf_sidebar_wrapper{
+    height: 100%;
+    width: 18%;
+    min-width: 250px;
+    position: relative;
+}
+
+.conf_main .conf_sidebar{
+    position: absolute;
+    overflow-y: auto;
+    height: 100%;
+    background: var(--main-black) !important;
+    width: 100%;
+    z-index: 999;
+    
+}
+
+.conf_sidebar_menu{
+    margin-top: 20px;
+    list-style-type: none;
+}
+
+.conf_sidebar .sidebar_menu-item{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border: none;
+    background: transparent;
+    padding: 14px 20px;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.conf_sidebar .sidebar_menu-item:hover{
+    background-color: #1f1f1fc8;
+}
+
+.conf_sidebar-header{
+    position: sticky;
+    top: 0;
+    background: var(--main-black);
+    padding: 20px 0;
+}
+
+.sidebar_menu-item > div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.sidebar_menu-item span{
+    font-size: .9rem;
+}
+
+.sidebar_menu-item svg{
+    color: #fff;
+    width: 24px;
+}
+
+.point-svg svg{
+    width: 20px;
+}
+
+.product_select_buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px
+}
+
+.sidebar_menu-item:first-child{
+    border: none;
+}
+
+
+
+/* Tools Sidebar */
+
+.tools_sidebar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(0%);
+    width: 150%;
+    height: 100%;
+    background: rgba(5, 5, 5, 0.907);
+    color: #fff;
+    transition: all 100ms ease-in-out;
+    z-index: 99;
+    overflow: auto;
+}
+
+.tools_sidebar.showModal{
+    transform: translate(100%);
+    
+}
+
+
+.tools_sidebar_heading{
+    position: sticky;
+    top: 0;
+    background: var(--main-black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px;
+    z-index: 99;
+}
+
+.settings-close-btn{
+    width: 30px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.conf_preview{
+    position: relative;
+    height: 100%;
+    background: url('../../images/f0d947fc-9db0-400d-865b-ed678b86d49b.png') center/cover no-repeat;
+    
+}
+
+.conf_preview .blur{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    background: #dcdedf2d;
+    backdrop-filter: blur(100px);
+}
+
+.conf_preview img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    
+}
+
+
+/* Door Samples Options */
+.tools_sidebar-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 20px;
+}
+
+.tools_sidebar-content form label{
+    border: 2px dashed #aaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 100%;
+    height: 140px;
+    cursor: pointer;
+}
+
+.tools_sidebar-content form label svg{
+    width: 30px;
+    color: #fff
+}
+
+.tools_sidebar-content form label input{
+    display: none;
+}
+
+
+.house-fronts{
+    flex: 1;
+    list-style-type: none;
+    /* margin: 20px 0; */
+    overflow-y: auto;
+    display: grid;
+    gap: 8px;
+    
+}
+
+.house-front{
+    position: relative;
+    background: transparent;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+
+.house-front:hover{
+    transform: scale(0.9);
+}
+
+.house-front img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+/* Door Frames */
+
+.door-frames{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.door-frames .door-frame{
+    position: relative;
+    min-height: 150px;
+    display: grid;
+    place-items: center;
+    background: var(--black-opacity);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.door-frames .door-frame:hover{
+    transform: scale(0.9);
+}
+
+.door-frame img{
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+
+.mobile_tools-bar{
+    flex: 1;
+    position: relative;
+    display: none;
+    /* height: calc(100vh - 56vh); */
+    width: 100%;
+    background: var(--main-black);
+    overflow-y: auto;
+    color: var(--main-white);
+    z-index: 9999999999999;
+}
+
+.mobile_tools-nav{
+    display: none;
+    background: var(--main-black);
+    width: 100%;
+    flex: 0.4;
+    padding: 15px 20px 0;
+    align-items: flex-start;
+    justify-content: space-between; 
+    z-index: 99999999999999999999999999999;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 768px){
+    main{
+       flex-direction: column;
+       
+    }
+
+    .conf_header{
+        display: block;
+    }
+    
+
+    .conf_sidebar_wrapper{
+        display: none;
+    }
+    
+    .conf_preview{
+        width: 100%;
+        
+    }
+
+    .conf_preview .blur{
+        justify-content: flex-start;
+    }
+
+    .conf_preview .blur .container{
+        max-height: 40vh;
+    }
+
+    .mobile_tools-bar{
+        display: block;
+    }
+
+    .mobile_tools-nav{
+        display: flex;
+    }
+
+
+    /* .conf_preview img{
+        width: 100%;
+        height: inherit;
+        object-fit: contain;
+        
+        
+    } */
+
+    
+
+    
+}
+
+
+
+
+@media (max-width: 1500px){
+    .conf_preview .blur .container{
+        width: 100%;
+    }
+    .conf_preview .blur{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}

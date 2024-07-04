@@ -1,8 +1,8 @@
 @import url('./fonts.css');
 @import url('./variables.css');
 @import url('./utilities.css');
-@import url('./feel.css');
 @import url('./forms.css');
+@import url('../css/pages/configurator.css');
 
 html{
     scroll-behavior: smooth;
@@ -21,7 +21,7 @@ body{
 
 
 
-header{
+.header{
     padding: 10px 0;
     position: fixed;
     top: 0;
@@ -48,6 +48,63 @@ header nav .menu{
     background: transparent;
     cursor: pointer;
 }
+
+
+
+  .slides-container {
+    position: relative;
+    overflow: hidden;  
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .slide {
+    position: absolute;
+    font-size: 90px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+  
+    height: 100%;
+    
+    width: calc(100% / 3);
+    width: 100%;
+  }
+  
+  .slides-inner {
+    position: relative;
+    height: 100%;
+    width: 100%;  
+    overflow: hidden;
+  }
+
+  .slides-inner .slide-1{
+    background: linear-gradient(to bottom, rgba(0, 0, 1, 0.718), rgba(0, 0, 1, 0.571)), url(../images/pexels-phil-10681892.jpg) center/cover fixed no-repeat;
+
+  }
+
+  .slides-inner .slide-2{
+    background: linear-gradient(to bottom, rgba(0, 0, 1, 0.718), rgba(0, 0, 1, 0.571)), url(../images/keyvisual2-rodenberg-startseite.jpg) center/cover fixed no-repeat;
+    
+  }
+  .slides-inner .slide-3{
+    background: linear-gradient(to bottom, rgba(0, 0, 1, 0.718), rgba(0, 0, 1, 0.571)), url(../images/pexels-heyho-7587822.jpg) center/cover fixed no-repeat;
+
+  }
+  .slides-inner .slide-4{
+    background: linear-gradient(to bottom, rgba(0, 0, 1, 0.718), rgba(0, 0, 1, 0.571)), url(../images/pexels-landsmann-803094805-19259869.jpg) center/cover fixed no-repeat;
+
+  }
+  .slides-inner .slide-5{
+    background: linear-gradient(to bottom, rgba(0, 0, 1, 0.718), rgba(0, 0, 1, 0.571)), url(../images/pexels-skitterphoto-422844.jpg) center/cover fixed no-repeat;
+
+  }
+  .slides-inner .slide-6{
+    background: linear-gradient(to bottom, rgba(0, 0, 1, 0.718), rgba(0, 0, 1, 0.571)), url(../images/keyvisual2-rodenberg-startseite.jpg) center/cover fixed no-repeat;
+
+  }
+  
+  
 
 nav .nav_menu{
     display: flex;

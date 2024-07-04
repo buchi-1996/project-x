@@ -31,7 +31,6 @@
 .container{
     width: 90%;
     margin: 0 auto;
-    height: inherit;
 }
 
 .gradient-text {
@@ -39,4 +38,24 @@
     background: var(--Gradient, linear-gradient(122deg, #F9C8BF 3.72%, #F87C61 19.56%, #AB26F8 84.21%, #D75EFC 100.63%));
     background-clip: text;
     -webkit-background-clip: text;
+}
+
+
+.selected{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: blue;
+}
+
+.selected svg{
+    color: #fff;
+    width: 16px;
+    font-weight: bold;
+    stroke-width: 6px;
 }
