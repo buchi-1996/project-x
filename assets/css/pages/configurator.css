@@ -19,7 +19,67 @@
     display: none;
     padding: 14px 0;
     background: var(--main-black);
-    color: #fff
+    color: #fff;
+
+}
+
+.conf_header .mobile_menu{
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    padding: 20px 0 0;
+    z-index: 99;
+    background: var(--main-black);
+    transform: translateY(30%);
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s ease;
+    
+}
+
+.mobile_menu.show_mobile_menu{
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.mobile_menu .mobile_menu-items{
+    list-style-type: none;
+    margin-top: 20px;
+
+}
+
+.mobile_menu-items .mobile_menu-item{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border: none;
+    background: transparent;
+    padding: 14px 20px;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.mobile_menu-item > div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.mobile_menu-item span{
+    font-size: .9rem;
+}
+
+.mobile_menu-item svg{
+    width: 30px;
+    color: var(--main-whitr)
+}
+
+.mobile_menu-item:hover{
+    background-color: #1f1f1fc8;
 }
 
 .conf_nav-menu{
@@ -200,7 +260,7 @@
 .conf_preview .img-fluid{
     width: 90%;
     margin: 0 auto;
-    z-index: 9999999999;
+    z-index: 999;
 }
 
 .conf_preview img{

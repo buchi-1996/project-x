@@ -4,11 +4,14 @@ class SideBarActions {
         this.sidebarSettingsModal = document.querySelector('.tools_sidebar')
         this.sidebarModalContents = document.querySelector('.tools_sidebar-content')
         this.closeSettingsModalBtn = document.querySelector('.settings-close-btn')
+        this.mobileMenuToggle = document.querySelector('.conf_mobile_menu-toggle')
+        this.mobileMenu = document.querySelector('.mobile_menu')
         this.settingsTitle;
         this.currentMenuItem;
         this.handleSidebarButtonClick()
         this.showSettingsModal('Door Frame', 0)
         this.closeSettingsModalBtn.addEventListener('click', this.closeSettingsModal)
+        this.mobileMenuToggle.addEventListener('click', this.handleMobilemenuToggle)
     }
 
     handleSidebarButtonClick = () => {
@@ -29,6 +32,10 @@ class SideBarActions {
                 }, 40);
             })
         })
+    }
+
+    handleMobilemenuToggle = (e) => {
+        this.mobileMenu.classList.toggle('show_mobile_menu')
     }
 
     // Sidebar Menu options
