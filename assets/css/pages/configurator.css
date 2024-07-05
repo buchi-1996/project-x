@@ -13,6 +13,10 @@
 .conf_header{
     width: 100%;
     display: none;
+    position: sticky;
+    top: 0;
+    height: 60px;
+    z-index: 9999999999999999999;
     padding: 14px 0;
     background: var(--main-black);
     color: #fff
@@ -194,6 +198,7 @@
 }
 
 .conf_preview .img-fluid{
+    z-index: 999999999;
     width: 90%;
     margin: 0 auto;
 }
@@ -296,16 +301,15 @@
 
 
 .mobile_tools-bar{
-    /* flex: 1; */
+    flex: 1;
     position: relative;
     display: none;
-    /* height: calc(100vh - 56vh); */
     width: 100%;
     background: var(--black-opacity);
     backdrop-filter: blur(150px);
     overflow-y: auto;
     color: var(--main-white);
-    z-index: 9999999999999;
+    z-index: 999;
 }
 
 .mobile_tools-nav{
@@ -315,7 +319,10 @@
     padding: 15px 20px;
     align-items: flex-start;
     justify-content: space-between; 
-    z-index: 99999999999999999999999999999;
+    z-index: 999999999;
+    position: sticky;
+    margin-top: auto;
+    bottom: 0;
 
 }
 
@@ -518,6 +525,11 @@
        
     }
 
+    .conf_body{
+        height: auto !important;
+        overflow: auto;
+    }
+
     .conf_header{
         display: block;
     }
@@ -538,6 +550,8 @@
 
     .conf_preview .blur .img-fluid{
         max-height: 40vh;
+        position: sticky;
+        top: 60px;
     }
 
     .mobile_tools-bar{
