@@ -6,7 +6,7 @@
 
 
 .conf_body{
-    height: scroll;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -517,6 +517,8 @@
        flex-direction: column;
        
     }
+
+    
 
     .conf_header{
         display: block;
