@@ -38,6 +38,8 @@
     
 }
 
+
+
 .mobile_menu.show_mobile_menu{
     opacity: 1;
     transform: translateY(0);
@@ -81,6 +83,10 @@
 
 .mobile_menu-item:hover{
     background-color: #1f1f1fc8;
+}
+
+.mobile_menu-item.active{
+    background-color: #303030db;
 }
 
 .conf_nav-menu{
@@ -240,7 +246,7 @@
 
 .conf_preview{
     position: relative;
-    height: 100%;
+    min-height: 100vh;
     background: url('../../images/f0d947fc-9db0-400d-865b-ed678b86d49b.png') center/cover no-repeat;
     
 }
@@ -252,7 +258,7 @@
     align-items: center;
     justify-content: center;
     place-items: center;
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
     background: #dcdedf2d;
     backdrop-filter: blur(100px);
@@ -276,11 +282,10 @@
 .tools_sidebar-content{
     display: flex;
     flex-direction: column;
-    gap: 20px;
     padding: 30px 20px;
 }
 
-.tools_sidebar-content form .house-sample{
+.house-sample{
     border: 2px dashed #aaa;
     display: flex;
     flex-direction: column;
@@ -292,12 +297,12 @@
     cursor: pointer;
 }
 
-.tools_sidebar-content form .house-sample svg{
+ .house-sample svg{
     width: 30px;
     color: #fff
 }
 
-.tools_sidebar-content form .house-sample input{
+ .house-sample input{
     display: none;
 }
 
@@ -305,7 +310,7 @@
 .house-fronts{
     flex: 1;
     list-style-type: none;
-    /* margin: 20px 0; */
+    margin: 20px 0;
     overflow-y: auto;
     display: grid;
     gap: 8px;
@@ -362,16 +367,18 @@
 
 
 .mobile_tools-bar{
-    /* flex: 1; */
     position: relative;
     display: none;
     width: 100%;
+    /* flex: 1; */
+    padding: 30px 20px;
     background: var(--black-opacity);
     backdrop-filter: blur(150px);
     -webkit-backdrop-filter: blur(150px);
     overflow-y: auto;
     color: var(--main-white);
     z-index: 99;
+    
 }
 
 .mobile_tools-nav{
@@ -380,7 +387,6 @@
     bottom: 0;
     background: var(--main-black);
     width: 100%;
-    /* flex: 1; */
     padding: 15px 20px;
     align-items: flex-start;
     justify-content: space-between; 
@@ -512,9 +518,9 @@
 
 .units-form{
     display: grid;
-    gap: 10px;
+    gap: 12px;
     background: var(--black-opacity);
-    padding: 20px;
+    padding: 40px 20px;
     border-radius: 10px;
 }
 
@@ -537,7 +543,7 @@
 
 .units-form .form-group input{
     width: 92%;
-    height: 40px;
+    height: 45px;
     padding: 10px;
     border-radius: 5px;
     border: none;
@@ -548,6 +554,8 @@
 .units-form #save-units{
     text-align: center;
     font-weight: bold;
+    height: 45px;
+    
 }
 
 .units .help-tips{

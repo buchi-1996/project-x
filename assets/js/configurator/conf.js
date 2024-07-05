@@ -6,10 +6,20 @@ class SideBarActions {
         this.closeSettingsModalBtn = document.querySelector('.settings-close-btn')
         this.mobileMenuToggle = document.querySelector('.conf_mobile_menu-toggle')
         this.mobileMenu = document.querySelector('.mobile_menu')
+        this.mobileMenuButton = document.querySelectorAll('.mobile_menu-item')
+        this.mobileModalContents = document.querySelector('.mobile_tools-bar')
+        this.mobileSettingsTitle = document.querySelector('.mobile_settings_title')
         this.settingsTitle;
-        this.currentMenuItem;
+        this.currentMenuItem = 0;
+
+
         this.handleSidebarButtonClick()
+        this.handleMobileMenuButtonClick()
         this.showSettingsModal('Door Frame', 0)
+        this.sidebarButtons[this.currentMenuItem].classList.add('active')
+        this.showMobileSettingsModal('Door Frame', 0)
+        this.mobileMenuButton[this.currentMenuItem].classList.add('active')
+
         this.closeSettingsModalBtn.addEventListener('click', this.closeSettingsModal)
         this.mobileMenuToggle.addEventListener('click', this.handleMobilemenuToggle)
     }
@@ -30,6 +40,26 @@ class SideBarActions {
                 setTimeout(() => {
                     this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
                 }, 40);
+            })
+        })
+    }
+
+    handleMobileMenuButtonClick = () => {
+        this.mobileMenuButton.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.handleMobilemenuToggle()
+                this.mobileMenuButton.forEach(btn => btn.classList.remove('active'));
+                this.currentMenuItem = +button.dataset.id
+                console.log(button);
+                // reset active states
+                this.closeSettingsModal();
+
+                this.settingsTitle = button.children[0].lastElementChild.textContent
+                button.classList.add('active')
+
+
+                this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+
             })
         })
     }
@@ -236,12 +266,7 @@ class SideBarActions {
         return(
             ` <div class="units">
                         <form class="units-form">
-                            <select name="units" id="units">
-                                <option value="inches" selected>Inches</option>
-                                <option value="pixels">Pixels</option>
-                                <option value="centimitres">Centimeters</option>
-                                <option value="millimetres">Millimeters</option>
-                            </select>
+                            
                             <div class="form-group">
                                 <label for="width">W</label>
                                 <input type="number" id="width" placeholder="0.00">
@@ -282,8 +307,30 @@ class SideBarActions {
         this.sidebarSettingsModal.classList.add('showModal')
     }
 
+
+    showMobileSettingsModal = (title, id) => {
+        console.log('yes')
+        this.mobileSettingsTitle.innerText = title
+        if (id === 0) {
+            this.mobileModalContents.innerHTML = this.doorFrames()
+        }else if(id === 1){
+            this.mobileModalContents.innerHTML = this.housefront()
+        }else if(id === 2){
+            this.mobileModalContents.innerHTML = this.doorType()
+        }else if(id === 3){
+            this.mobileModalContents.innerHTML = this.color()
+        }else if(id === 4){
+            this.mobileModalContents.innerHTML = this.material()
+        }else if(id === 5){
+            this.mobileModalContents.innerHTML = this.dimension()
+        }
+
+
+    }
+
     closeSettingsModal = () => {
         this.sidebarSettingsModal.classList.remove('showModal')
+        this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
     }
 
 }
