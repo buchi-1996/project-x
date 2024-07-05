@@ -6,12 +6,16 @@
 
 
 .conf_body{
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
 }
 
 .conf_header{
-    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    width: 100%; 
+    height: 60px;
     display: none;
     padding: 14px 0;
     background: var(--main-black);
@@ -196,6 +200,7 @@
 .conf_preview .img-fluid{
     width: 90%;
     margin: 0 auto;
+    z-index: 9999999999;
 }
 
 .conf_preview img{
@@ -296,7 +301,7 @@
 
 
 .mobile_tools-bar{
-    flex: 1;
+    /* flex: 1; */
     position: relative;
     display: none;
     width: 100%;
@@ -304,19 +309,20 @@
     backdrop-filter: blur(150px);
     overflow-y: auto;
     color: var(--main-white);
-    z-index: 9999999999999;
+    z-index: 99;
 }
 
 .mobile_tools-nav{
     display: none;
+    position: sticky;
+    bottom: 0;
     background: var(--main-black);
     width: 100%;
     /* flex: 1; */
-    flex-shrink: 0;
     padding: 15px 20px;
     align-items: flex-start;
     justify-content: space-between; 
-    z-index: 99999999999999999999999999999;
+    z-index: 9999;
 
 }
 
@@ -519,6 +525,15 @@
        
     }
 
+    .conf_body{
+        height: 100%;
+        overflow: auto;
+    }
+
+    .conf_main{
+        height: 100%;
+    }
+    
     
 
     .conf_header{
@@ -541,6 +556,8 @@
 
     .conf_preview .blur .img-fluid{
         max-height: 40vh;
+        position: sticky;
+        top: 60px;
     }
 
     .mobile_tools-bar{
