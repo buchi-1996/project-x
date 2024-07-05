@@ -14,10 +14,16 @@ class SideBarActions {
     handleSidebarButtonClick = () => {
         this.sidebarButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                console.log(button);
-                this.closeSettingsModal();
-                this.settingsTitle = button.children[0].lastElementChild.textContent
+                this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
                 this.currentMenuItem = +button.dataset.id
+                console.log(button);
+                // reset active states
+                this.closeSettingsModal();
+
+                this.settingsTitle = button.children[0].lastElementChild.textContent
+                button.classList.add('active')
+
+
                 setTimeout(() => {
                     this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
                 }, 40);
@@ -198,6 +204,27 @@ class SideBarActions {
         )
     }
 
+    material = () => {
+        return(
+            `
+            <ul class="materials">
+                        <li class="material">
+                            <img src="./assets/images/material/8Aw_c57dQIa4odlhF0_-jg.webp" alt="">
+                            <small>Wood</small>
+                        </li>
+                        <li class="material">
+                            <img src="./assets/images/material/FzWRBCtPSzaPd4ArsyxgpQ.jpeg" alt="">
+                            <small>Steel</small>
+                        </li>
+                        <li class="material">
+                            <img src="./assets/images/material/28CFWnC0QLyhhNOuIK5pUg.webp" alt="">
+                            <small>Fibre Glass</small>
+                        </li>
+                     </ul>
+            `
+        )
+    }
+
     showSettingsModal = (title, id) => {
         // if title matches show settings for title
         this.sidebarSettingsModal.scrollTop = 0;
@@ -211,7 +238,7 @@ class SideBarActions {
         }else if(id === 3){
             this.sidebarModalContents.innerHTML = this.color()
         }else if(id === 4){
-            this.sidebarModalContents.innerHTML = ''
+            this.sidebarModalContents.innerHTML = this.material()
         }else if(id === 5){
             this.sidebarModalContents.innerHTML = ''
         }else if(id === 6){
