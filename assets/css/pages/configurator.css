@@ -208,7 +208,7 @@
     padding: 30px 20px;
 }
 
-.tools_sidebar-content form label{
+.tools_sidebar-content form .house-sample{
     border: 2px dashed #aaa;
     display: flex;
     flex-direction: column;
@@ -220,12 +220,12 @@
     cursor: pointer;
 }
 
-.tools_sidebar-content form label svg{
+.tools_sidebar-content form .house-sample svg{
     width: 30px;
     color: #fff
 }
 
-.tools_sidebar-content form label input{
+.tools_sidebar-content form .house-sample input{
     display: none;
 }
 
@@ -431,8 +431,54 @@
 }
 
 
+/* Dimension */
 
 
+
+.units-form{
+    display: grid;
+    gap: 10px;
+    background: var(--black-opacity);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.units-form .form-group{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.units-form #units{
+    place-self: end;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    background: var(--main-black);
+    color: var(--main-white);
+    font-family: "Inter"sans-serif;
+}
+
+.units-form .form-group input{
+    width: 92%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+
+}
+
+.units-form #save-units{
+    text-align: center;
+    font-weight: bold;
+}
+
+.units .help-tips{
+    margin-top: 10px;
+    font-size: .8rem;
+}
 
 
 

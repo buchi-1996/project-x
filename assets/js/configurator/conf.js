@@ -93,7 +93,7 @@ class SideBarActions {
         return (
             `<!-- Upload House Front -->
                     <form>
-                        <label for="house-sample">
+                        <label for="house-sample" class="house-sample">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -225,6 +225,34 @@ class SideBarActions {
         )
     }
 
+    dimension = () => {
+        return(
+            ` <div class="units">
+                        <form class="units-form">
+                            <select name="units" id="units">
+                                <option value="inches" selected>Inches</option>
+                                <option value="pixels">Pixels</option>
+                                <option value="centimitres">Centimeters</option>
+                                <option value="millimetres">Millimeters</option>
+                            </select>
+                            <div class="form-group">
+                                <label for="width">W</label>
+                                <input type="number" id="width" placeholder="0.00">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">H</label>
+                                <input type="number" id="height" placeholder="0.00">
+                            </div>
+                            <input type="submit" id="save-units" value="Save" class="btn btn-secondary">
+                         </form>
+                         <p class="help-tips">Enter door width and height to set door dimension</p>
+    
+                     </div>
+                </div>
+            `
+        )
+    }
+
     showSettingsModal = (title, id) => {
         // if title matches show settings for title
         this.sidebarSettingsModal.scrollTop = 0;
@@ -240,9 +268,7 @@ class SideBarActions {
         }else if(id === 4){
             this.sidebarModalContents.innerHTML = this.material()
         }else if(id === 5){
-            this.sidebarModalContents.innerHTML = ''
-        }else if(id === 6){
-            this.sidebarModalContents.innerHTML = ''
+            this.sidebarModalContents.innerHTML = this.dimension()
         }
 
 
