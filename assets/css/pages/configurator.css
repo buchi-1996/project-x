@@ -73,12 +73,12 @@
 }
 
 .mobile_menu-item span{
-    font-size: .9rem;
+    font-size: .79rem;
 }
 
 .mobile_menu-item svg{
     width: 30px;
-    color: var(--main-whitr)
+    color: var(--main-white)
 }
 
 .mobile_menu-item:hover{
