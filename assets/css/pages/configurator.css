@@ -295,7 +295,7 @@
     display: none;
     /* height: calc(100vh - 56vh); */
     width: 100%;
-    background: var(--main-black);
+    background: var(--black-opacity);
     overflow-y: auto;
     color: var(--main-white);
     z-index: 9999999999999;
