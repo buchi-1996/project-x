@@ -301,7 +301,7 @@
 
 
 .mobile_tools-bar{
-    flex: 1;
+    /* flex: 1; */
     position: relative;
     display: none;
     width: 100%;
