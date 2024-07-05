@@ -6,7 +6,7 @@
 
 
 .conf_body{
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -296,7 +296,7 @@
 
 
 .mobile_tools-bar{
-    /* flex: 1; */
+    flex: 1;
     position: relative;
     display: none;
     width: 100%;
@@ -312,6 +312,7 @@
     background: var(--main-black);
     width: 100%;
     /* flex: 1; */
+    flex-shrink: 0;
     padding: 15px 20px;
     align-items: flex-start;
     justify-content: space-between; 
