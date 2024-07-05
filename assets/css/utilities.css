@@ -40,6 +40,16 @@
     -webkit-background-clip: text;
 }
 
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 2px;
+    background: transparent;
+}
+
 
 .selected{
     position: absolute;
