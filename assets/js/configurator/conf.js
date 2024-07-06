@@ -268,10 +268,10 @@ class SideBarActions {
                         <form class="units-form">
                             
                             <div class="form-group">
-                                <input type="number" id="width" placeholder="width">
+                                <input type="number" id="width" placeholder="Width">
                             </div>
                             <div class="form-group">
-                                <input type="number" id="height" placeholder="height">
+                                <input type="number" id="height" placeholder="Height">
                             </div>
                             <input type="submit" id="save-units" value="Save" class="btn btn-secondary">
                          </form>

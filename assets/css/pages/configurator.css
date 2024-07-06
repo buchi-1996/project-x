@@ -16,15 +16,40 @@
     z-index: 9999;
     width: 100%; 
     height: 60px;
-    display: none;
+    /* display: none; */
     padding: 14px 0;
     background: var(--main-black);
     color: #fff;
 
 }
 
+.conf_header_action-buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.conf_mobile_menu-toggle{
+    display: none;
+}
+
+.summary{
+    color:  var(--main-black);
+    font-size: .9rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: var(--main-white) !important;
+
+}
+
+.summary_mobile{
+   display: none;
+}
+
 .conf_header .mobile_menu{
     position: absolute;
+    display: none;
     top: 60px;
     width: 100%;
     padding: 20px 0 0;
@@ -72,6 +97,10 @@
     gap: 20px;
 }
 
+.mobile_settings_title{
+    display: none
+}
+
 .mobile_menu-item span{
     font-size: .79rem;
 }
@@ -92,10 +121,11 @@
 .conf_nav-menu{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .conf_nav-menu a{
-    color: var(--main-white)
+    color: var(--main-white);
+    display: none;
 }
 
 .conf_nav-menu button{
@@ -257,6 +287,7 @@
 .conf_preview{
     position: relative;
     min-height: 100vh;
+    width: 100%;
     background: url('../../images/f0d947fc-9db0-400d-865b-ed678b86d49b.png') center/cover no-repeat;
     
 }
@@ -266,8 +297,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    place-items: center;
     height: 100vh;
     width: 100%;
     background: #dcdedf2d;
@@ -278,11 +307,16 @@
     width: 90%;
     margin: 0 auto;
     z-index: 999;
+    height: 100%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: flex-start; */
 }
 
 .conf_preview img{
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
     
 }
@@ -411,6 +445,8 @@
 .mobile_tools-nav button{
     font-size: .9rem;
 }
+
+
 
 
 /* Door Types */
@@ -625,6 +661,28 @@
         overflow: auto;
     }
 
+    .conf_header .mobile_menu{
+        display: block;
+    }
+
+    .conf_mobile_menu-toggle{
+        display: block;
+    }
+
+    .summary{
+        display: none;
+    }
+
+    .summary_mobile{
+        display: block;
+        color:  var(--main-black);
+        font-size: .9rem;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background: var(--main-white) !important;
+    }
+
     /* .conf_main{
         height: 100%;
     }
@@ -661,8 +719,20 @@
 
     .mobile_tools-nav{
         display: flex;
+        justify-content: flex-end;
     }
 
+    .conf_nav-menu{
+        justify-content: space-between;
+    }
+
+    .conf_nav-menu a{
+        display: block;
+    }
+
+    .mobile_settings_title{
+        display: block
+    }
 
     /* .conf_preview img{
         width: 100%;
