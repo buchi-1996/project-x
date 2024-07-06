@@ -675,12 +675,6 @@
 
     .summary_mobile{
         display: block;
-        color:  var(--main-black);
-        font-size: .9rem;
-        font-weight: 600;
-        padding: 5px 10px;
-        border-radius: 5px;
-        background: var(--main-white) !important;
     }
 
     /* .conf_main{
@@ -708,7 +702,7 @@
     }
 
     .conf_preview .blur .img-fluid{
-        max-height: 40vh;
+        height: 100%;
         position: sticky;
         top: 60px;
     }
@@ -719,7 +713,7 @@
 
     .mobile_tools-nav{
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
     }
 
     .conf_nav-menu{
