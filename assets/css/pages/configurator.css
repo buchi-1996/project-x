@@ -192,9 +192,19 @@
 
 .product_select_buttons{
     display: flex;
+    padding: 0 20px;
     align-items: center;
-    justify-content: center;
+    justify-content: stretch;
     gap: 20px
+}
+
+.product_select_buttons button:nth-child(1){
+    flex: 1;
+    font-size: .9rem;
+}
+.product_select_buttons button:nth-child(2){
+    flex: 1;
+    font-size: .9rem;
 }
 
 .sidebar_menu-item:first-child{
@@ -365,6 +375,10 @@
     object-fit: cover;
 }
 
+.door-frame small{
+    margin-top: 20px;
+}
+
 
 .mobile_tools-bar{
     position: relative;
@@ -372,7 +386,7 @@
     width: 100%;
     /* flex: 1; */
     padding: 30px 20px;
-    background: var(--black-opacity);
+    background: #000000d1;
     backdrop-filter: blur(150px);
     -webkit-backdrop-filter: blur(150px);
     overflow-y: auto;
@@ -392,6 +406,10 @@
     justify-content: space-between; 
     z-index: 9999;
 
+}
+
+.mobile_tools-nav button{
+    font-size: .9rem;
 }
 
 
@@ -420,6 +438,10 @@
     height: 100%;
     background: var(--black-opacity);
     object-fit: cover;
+}
+
+.door-type small{
+    margin-top: 20px;
 }
 
 
@@ -507,6 +529,10 @@
     height: 100%;
     background: var(--black-opacity);
     object-fit: cover;
+}
+
+.material small{
+    margin-top: 20px;
 }
 
 
