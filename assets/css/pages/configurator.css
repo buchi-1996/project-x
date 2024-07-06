@@ -578,12 +578,14 @@
 .units-form #save-units{
     text-align: center;
     font-weight: bold;
+    height: 40px;
     
 }
 
 .units .help-tips{
     margin-top: 10px;
     font-size: .8rem;
+
 }
 
 
