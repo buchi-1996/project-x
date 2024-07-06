@@ -256,7 +256,7 @@
 
 .conf_preview{
     position: relative;
-    min-height: 100vh;
+    height: 100vh;
     background: url('../../images/f0d947fc-9db0-400d-865b-ed678b86d49b.png') center/cover no-repeat;
     
 }
