@@ -399,7 +399,8 @@
 .door-types{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    row-gap: 24px;
+    column-gap: 14px;
 }
 
 .door-types .door-type{
@@ -407,7 +408,6 @@
     display: grid;
     place-items: center;
     cursor: pointer;
-    border: 2px solid #fff;
     transition: all .5s ease;
 }
 
@@ -490,7 +490,8 @@
 .materials{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    column-gap: 14px;
+    row-gap: 24px;
 }
 
 .materials .material{
@@ -498,8 +499,6 @@
     display: grid;
     place-items: center;
     cursor: pointer;
-    border: 2px solid #fff;
-    min-height: 250px;
     transition: all .5s ease;
 }
 
@@ -519,7 +518,7 @@
     display: grid;
     gap: 12px;
     background: var(--black-opacity);
-    padding: 40px 20px;
+    padding: 40px 30px;
     border-radius: 10px;
 }
 
@@ -541,19 +540,18 @@
 }
 
 .units-form .form-group input{
-    width: 92%;
-    height: 45px;
+    width: 100%;
+    height: 40px;
+    font-size: .9rem;
     padding: 10px;
     border-radius: 5px;
     border: none;
-    font-weight: 600;
 
 }
 
 .units-form #save-units{
     text-align: center;
     font-weight: bold;
-    height: 45px;
     
 }
 
