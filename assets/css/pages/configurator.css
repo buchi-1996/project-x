@@ -301,6 +301,7 @@
     width: 100%;
     background: #dcdedf2d;
     backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
 }
 
 .conf_preview .img-fluid{
