@@ -697,7 +697,6 @@
     }
 
     .conf_preview .blur .img-fluid{
-        height: 100%;
         position: sticky;
         top: 60px;
     }
