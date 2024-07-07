@@ -42,11 +42,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background: var(--main-white);
+    border-radius: 10px;
+
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 3px;
     height: 2px;
     background: transparent;
 }
