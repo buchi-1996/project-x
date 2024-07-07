@@ -113,12 +113,21 @@
     color: var(--main-white)
 }
 
+
+.mobile_menu-item.active svg{
+    width: 30px;
+    color: var(--main-black)
+}
+
 .mobile_menu-item:hover{
-    background-color: rgba(26, 36, 113, 0.305);
+    background-color: rgba(13, 19, 67, 0.87);
 }
 
 .mobile_menu-item.active{
-    background-color: rgba(13, 19, 67, 0.87);
+    background-color: var(--main-white);
+    color: var(--main-black);
+    font-weight: bold;
+
 }
 
 .conf_nav-menu{
@@ -425,7 +434,6 @@
     background: var(--main-black);
     backdrop-filter: blur(150px);
     -webkit-backdrop-filter: blur(150px);
-    background-image: radial-gradient(80% 100% at 50% 80%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
     overflow-y: auto;
     color: var(--main-white);
     z-index: 99;
@@ -742,6 +750,14 @@
         
     } */
 
+    .door-frames{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .door-frames .door-frame{
+        background: none;
+        padding: 10px;
+    }
     
 
     
