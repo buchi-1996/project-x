@@ -763,13 +763,9 @@
         grid-template-columns: repeat(3, 1fr);
     }
     
-    /* .door-types .door-type{
-        position: relative;
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        transition: all .5s ease;
-    } */
+    .materials{
+        grid-template-columns: repeat(3, 1fr);
+    }
 
     
 }
