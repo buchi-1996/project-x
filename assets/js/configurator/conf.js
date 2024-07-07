@@ -274,9 +274,7 @@ class SideBarActions {
                                 <input type="number" id="height" placeholder="Height">
                             </div>
                             <input type="submit" id="save-units" value="Save" class="btn btn-secondary">
-                         </form>
-                         <p class="help-tips">Enter door width and height to set door dimension</p>
-    
+                         </form>    
                      </div>
                 </div>
             `
