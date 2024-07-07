@@ -690,7 +690,7 @@
 
     .conf_header .mobile_menu{
         display: block;
-        height: 100vh;
+        /* height: 100vh; */
     }
 
     .conf_mobile_menu-toggle{
@@ -780,19 +780,7 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    /* .mobile_menu-overlay{
-        position: absolute;
-        background: var(--blue-opacity);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(100px);
-        height: 100vh !important;
-        width: 100%;
-        bottom: 0;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 99999999;
-    } */
+    
 
     
 }
