@@ -193,6 +193,14 @@ class SideBarActions {
                             <img src="./assets/images/door-types/9ff9be81-e5be-4711-aa29-610a8514d7fa.png" alt="">
                             <small>Patio door</small>
                         </div>
+                        <div class="door-type">
+                            <img src="./assets/images/door-types/70bae32b-aa87-47e7-b397-4a3b34a40afe.png" alt="">
+                            <small>Back door</small>
+                        </div>
+                        <div class="door-type">
+                            <img src="./assets/images/door-types/9ff9be81-e5be-4711-aa29-610a8514d7fa.png" alt="">
+                            <small>Patio door</small>
+                        </div>
                         
                      </ul>`
         )

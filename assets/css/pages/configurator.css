@@ -484,7 +484,7 @@
     width: 100%;
     height: 100%;
     background: var(--black-opacity);
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .door-type small{
@@ -759,6 +759,17 @@
         padding: 10px;
     }
     
+    .door-types{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* .door-types .door-type{
+        position: relative;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: all .5s ease;
+    } */
 
     
 }
