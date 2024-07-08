@@ -340,7 +340,7 @@
     max-height: 85%;
     overflow: hidden;
     margin: 0 auto ;
-    z-index: 99999999;
+    z-index: 999;
     border-radius: 20px;
     box-shadow: 0 0 2em 1em rgba(6, 27, 48, 0.099);
 }
