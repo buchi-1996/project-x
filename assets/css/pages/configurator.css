@@ -18,8 +18,8 @@
     height: 60px;
     /* display: none; */
     padding: 14px 0;
-    background: var(--main-black);
-    background-image: radial-gradient(50% 100% at 80% 80%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
+    /* background: var(--main-black); */
+    /* background-image: radial-gradient(50% 100% at 80% 80%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%); */
     color: #fff;
 
 }
@@ -278,6 +278,7 @@
     width: 150%;
     height: 100%;
     background: var(--blue-opacity);
+    background-image: radial-gradient(80.1% 100% at 50% 0%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
     backdrop-filter: blur(100px);
     color: #fff;
     transition: all 100ms ease-in-out;
@@ -314,8 +315,9 @@
     position: relative;
     min-height: 100vh;
     width: 100%;
-    background: url('../../images/f0d947fc-9db0-400d-865b-ed678b86d49b.png') center/cover no-repeat;
-    
+    background-image: radial-gradient(50% 100% at 80% 80%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
+
+    /* background: url('../../images/f0d947fc-9db0-400d-865b-ed678b86d49b.png') center/cover no-repeat; */
 }
 
 .conf_preview .blur{
@@ -325,21 +327,28 @@
     align-items: center;
     height: 100vh;
     width: 100%;
-    background: #dcdedf2d;
-    backdrop-filter: blur(100px);
-    -webkit-backdrop-filter: blur(100px);
+    background:#050719;
+    background-image: radial-gradient(80.1% 100% at 0% 0%, rgba(24, 81, 138, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
+    backdrop-filter: blur(100px); 
+    -webkit-backdrop-filter: blur(100px); 
 }
 
 .conf_preview .img-fluid{
-    width: 90%;
-    margin: 0 auto;
-    z-index: 999;
+    width: 100%;
+    max-width: 90%;
+    height: auto;
+    max-height: 85%;
+    overflow: hidden;
+    margin: 0 auto ;
+    z-index: 99;
+    border-radius: 20px;
+    box-shadow: 0 0 2em 1em rgba(6, 27, 48, 0.099);
 }
 
 .conf_preview img{
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     
 }
 
@@ -517,6 +526,7 @@
     display: grid;
     place-items: center;
     cursor: pointer;
+    border-radius: 8px;
     transition: all .5s ease;
     height: 150px;
 
@@ -729,10 +739,15 @@
         justify-content: flex-start;
     }
 
-    .conf_preview .blur .img-fluid{
+    .conf_preview .img-fluid{
         position: sticky;
         top: 60px;
+        width: 100%;
+        max-width: 100%;
+        max-height: 40vh;
+        border-radius: 0;
     }
+
 
     .mobile_tools-bar{
         display: block;
