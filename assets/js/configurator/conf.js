@@ -2,6 +2,7 @@ class SideBarActions {
     constructor() {
         this.sidebarButtons = document.querySelectorAll('.sidebar_menu-item')
         this.sidebarSettingsModal = document.querySelector('.tools_sidebar')
+        this.modalWrapper = document.querySelector('.conf_sidebar_wrapper')
         this.sidebarModalContents = document.querySelector('.tools_sidebar-content')
         this.closeSettingsModalBtn = document.querySelector('.settings-close-btn')
         this.mobileMenuToggle = document.querySelector('.conf_mobile_menu-toggle')
@@ -37,9 +38,7 @@ class SideBarActions {
                 button.classList.add('active')
 
 
-                setTimeout(() => {
                     this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
-                }, 40);
             })
         })
     }
@@ -300,6 +299,7 @@ class SideBarActions {
 
 
         this.sidebarSettingsModal.classList.add('showModal')
+        this.modalWrapper.classList.add('showModal')
     }
 
 
@@ -325,6 +325,7 @@ class SideBarActions {
 
     closeSettingsModal = () => {
         this.sidebarSettingsModal.classList.remove('showModal')
+        this.modalWrapper.classList.remove('showModal')
         this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
     }
 

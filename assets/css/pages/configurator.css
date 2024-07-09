@@ -167,20 +167,27 @@
 }
 
 .conf_main .conf_sidebar_wrapper{
+    background: var(--main-black);
     height: 100%;
-    width: 18%;
-    min-width: 250px;
+    flex-shrink: 0;
+    width: 250px;
     position: relative;
+    transition: all 100ms ease-in-out;
 
 }
 
+.conf_main .conf_sidebar_wrapper.showModal{
+    width: 600px;
+}
+
 .conf_main .conf_sidebar{
-    position: absolute;
+    position: relative;
     overflow-y: auto;
     height: 100%;
     background: var(--main-black) !important;
     background-image: radial-gradient(80.1% 100% at 50% 0%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
     width: 100%;
+    max-width: 250px;
     z-index: 999;
     
 }
@@ -250,15 +257,18 @@
     padding: 0 20px;
     align-items: center;
     justify-content: stretch;
-    gap: 20px
+    gap: 12px
 }
 
 .product_select_buttons button:nth-child(1){
     flex: 1;
+    border-radius: 5px;
     font-size: .9rem;
 }
 .product_select_buttons button:nth-child(2){
     flex: 1;
+    padding: 6px 3px;
+    border-radius: 5px;
     font-size: .9rem;
 }
 
@@ -274,8 +284,8 @@
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(0%);
-    width: 150%;
+    transform: translate(-100%);
+    width: calc(600px - 250px);
     height: 100%;
     background: var(--blue-opacity);
     background-image: radial-gradient(80.1% 100% at 50% 0%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
@@ -287,7 +297,8 @@
 }
 
 .tools_sidebar.showModal{
-    transform: translate(100%);
+    transform: translate(0%);
+    /* background: green; */
     
 }
 
@@ -314,6 +325,7 @@
 .conf_preview{
     position: relative;
     min-height: 100vh;
+    flex: 1;
     width: 100%;
     background-image: radial-gradient(50% 100% at 80% 80%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
 
@@ -339,8 +351,10 @@
     height: auto;
     max-height: 85%;
     overflow: hidden;
-    margin: 0 auto ;
+    margin: 10px auto 0;
     z-index: 999;
+    outline: 2px dashed #aab7ebe2;
+    outline-offset: 10px;
     border-radius: 20px;
     box-shadow: 0 0 2em 1em rgba(6, 27, 48, 0.099);
 }

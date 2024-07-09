@@ -14,9 +14,13 @@ button{
     cursor: pointer;
 }
 
+.btn-small {
+    padding: 7px 3px;
+}
+
 .btn-primary {
     background-color: #1e1e1e;
-    color: white
+    color: white;
 }
 
 .btn-outline{
