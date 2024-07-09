@@ -17,8 +17,10 @@ class SideBarActions {
         this.handleSidebarButtonClick()
         this.handleMobileMenuButtonClick()
         this.showSettingsModal('Door Frame', 0)
-        this.sidebarButtons[this.currentMenuItem].classList.add('active')
         this.showMobileSettingsModal('Door Frame', 0)
+        this.modalWrapper.classList.add('showModal')
+
+        this.sidebarButtons[this.currentMenuItem].classList.add('active')
         this.mobileMenuButton[this.currentMenuItem].classList.add('active')
 
         this.closeSettingsModalBtn.addEventListener('click', this.closeSettingsModal)
@@ -36,9 +38,11 @@ class SideBarActions {
 
                 this.settingsTitle = button.children[0].lastElementChild.textContent
                 button.classList.add('active')
+                this.modalWrapper.classList.add('showModal')
 
-
+                setTimeout(() => {
                     this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
+                }, 40);
             })
         })
     }
@@ -56,8 +60,8 @@ class SideBarActions {
                 this.settingsTitle = button.children[0].lastElementChild.textContent
                 button.classList.add('active')
 
-
-                this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+            
+                    this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
 
             })
         })
@@ -69,7 +73,7 @@ class SideBarActions {
 
     // Sidebar Menu options
     doorFrames = () => {
-        return(
+        return (
             `<ul class="door-frames">
                         <li class="door-frame">
                             <span class="selected">
@@ -173,7 +177,7 @@ class SideBarActions {
     }
 
     doorType = () => {
-        return(
+        return (
             `<ul class="door-types">
                         <div class="door-type">
                         <span class="selected">
@@ -197,7 +201,7 @@ class SideBarActions {
     }
 
     color = () => {
-        return(
+        return (
             `<ul class="colors">
                         <li class="color">
                         <span class="selected">
@@ -240,7 +244,7 @@ class SideBarActions {
     }
 
     material = () => {
-        return(
+        return (
             `
             <ul class="materials">
                         <li class="material">
@@ -261,7 +265,7 @@ class SideBarActions {
     }
 
     dimension = () => {
-        return(
+        return (
             ` <div class="units">
                         <form class="units-form">
                             
@@ -285,22 +289,22 @@ class SideBarActions {
         this.sidebarSettingsModal.firstElementChild.firstElementChild.innerText = title
         if (id === 0) {
             this.sidebarModalContents.innerHTML = this.doorFrames()
-        }else if(id === 1){
+        } else if (id === 1) {
             this.sidebarModalContents.innerHTML = this.housefront()
-        }else if(id === 2){
+        } else if (id === 2) {
             this.sidebarModalContents.innerHTML = this.doorType()
-        }else if(id === 3){
+        } else if (id === 3) {
             this.sidebarModalContents.innerHTML = this.color()
-        }else if(id === 4){
+        } else if (id === 4) {
             this.sidebarModalContents.innerHTML = this.material()
-        }else if(id === 5){
+        } else if (id === 5) {
             this.sidebarModalContents.innerHTML = this.dimension()
         }
 
 
         this.sidebarSettingsModal.classList.add('showModal')
-        this.modalWrapper.classList.add('showModal')
     }
+
 
 
     showMobileSettingsModal = (title, id) => {
@@ -308,15 +312,15 @@ class SideBarActions {
         this.mobileSettingsTitle.innerText = title
         if (id === 0) {
             this.mobileModalContents.innerHTML = this.doorFrames()
-        }else if(id === 1){
+        } else if (id === 1) {
             this.mobileModalContents.innerHTML = this.housefront()
-        }else if(id === 2){
+        } else if (id === 2) {
             this.mobileModalContents.innerHTML = this.doorType()
-        }else if(id === 3){
+        } else if (id === 3) {
             this.mobileModalContents.innerHTML = this.color()
-        }else if(id === 4){
+        } else if (id === 4) {
             this.mobileModalContents.innerHTML = this.material()
-        }else if(id === 5){
+        } else if (id === 5) {
             this.mobileModalContents.innerHTML = this.dimension()
         }
 

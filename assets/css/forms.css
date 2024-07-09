@@ -14,9 +14,9 @@ button{
     cursor: pointer;
 }
 
-.btn-small {
+/* .btn-small {
     padding: 7px 3px;
-}
+} */
 
 .btn-primary {
     background-color: #1e1e1e;
@@ -49,4 +49,5 @@ button{
     /* background: var(--Gradient, linear-gradient(122deg, #F9C8BF 3.72%, #F87C61 19.56%, #AB26F8 84.21%, #D75EFC 100.63%)); */
     color: #fff;
     background: #2E4CFA;
+    border: 1px solid var(--primary-color);
 }
