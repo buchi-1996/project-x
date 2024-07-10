@@ -4,8 +4,72 @@
     box-sizing: border-box;
 }
 
+.modal_overlay{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.229);
+    backdrop-filter: blur(15px);
+    z-index: 99999999;
+    height: 100%;
+    width: 100%;
+
+}
+
+.summary_details{
+    position: absolute;
+    top: 50%;
+    display: none;
+    right: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999999999999999999999999999999999999999999;
+    background: var(--main-white);
+    overflow: auto;
+    height: 90%;
+    width: 95%;
+    border-radius: 5px;
+    max-width: 700px;
+
+}
+
+.summary_details-heading{
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--main-black);
+    color: var(--main-white);
+    justify-content: space-between;
+}
+
+.summary_details-content{
+    padding: 20px;
+}
+
+.summary_details-heading h4{
+    font-size: 1.2rem;
+}
+
+.summary_details-close{
+    width: 30px;
+    color: var(--main-white);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.summary_details-close svg{
+    width: 30px;
+}
+
 
 .conf_body{
+    position: relative;
     height: 100vh;
     overflow: hidden;
 }
@@ -26,7 +90,7 @@
 
 .conf_header_action-buttons{
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 10px;
 }
 
@@ -38,7 +102,7 @@
     color:  var(--main-black);
     font-size: .9rem;
     font-weight: 600;
-    padding: 5px 10px;
+    padding: 8px 20px;
     border-radius: 5px;
     background: var(--main-white) !important;
 
@@ -136,8 +200,26 @@
 .conf_nav-menu{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
+
+.helper_buttons{
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.helper_buttons .swap_view-btn{
+    width: 26px;
+    height: 26x;
+    object-fit: contain;
+}
+
+.helper_buttons button svg{
+    width: 26px;
+}
+
 .conf_nav-menu a{
     color: var(--main-white);
     display: none;
@@ -487,6 +569,8 @@
 
 .mobile_tools-nav button{
     font-size: .9rem;
+    background: none;
+    color: #fff;
 }
 
 
@@ -675,6 +759,85 @@
 
 }
 
+/* Done Download PDF */
+
+.download_pdf{
+    display: grid;
+    gap: 20px;
+    background: url('../../images/LLIItUHupcoa2e70KVTuDzjQk.avif') center/cover no-repeat;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.quote_form{
+    display: grid;
+    margin: 20px 0;
+}
+
+.quote_form-heading{
+    margin: 20px 0;
+}
+
+.quote_form-heading h4{
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.quote_form-heading p{
+    font-size: .9rem;
+}
+
+.quote_form .row{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.quote_form .form-group{
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.quote_form .form-group label{
+    display: none;
+}
+
+.quote_form .form-group input{
+    width: 100%;
+    height: 40px;
+    font-size: .9rem;
+    color: #eee;
+    background: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: 1px solid #eeeeeec7;
+}
+
+.download_pdf p{
+    font-size: .9rem;
+}
+
+.download_pdf button{
+    place-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 4px 14px;
+}
+
+.download_pdf button p{
+    font-size: .9rem;
+}
+
+.download_pdf button svg{
+    width: 20px;
+}
+
+
+
+
 
 
 
@@ -738,6 +901,10 @@
     .conf_header{
         display: block;
     }
+
+    .conf_nav-menu .helper_buttons{
+        display: none
+    }
     
 
     .conf_sidebar_wrapper{
@@ -770,7 +937,8 @@
 
     .mobile_tools-nav{
         display: flex;
-        justify-content: center;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .conf_nav-menu{

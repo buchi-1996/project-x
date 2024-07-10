@@ -5,14 +5,22 @@ class SideBarActions {
         this.modalWrapper = document.querySelector('.conf_sidebar_wrapper')
         this.sidebarModalContents = document.querySelector('.tools_sidebar-content')
         this.closeSettingsModalBtn = document.querySelector('.settings-close-btn')
+        this.getQuoteDesktop = document.querySelector('.summary');
+
+
+        // Mobile
         this.mobileMenuToggle = document.querySelector('.conf_mobile_menu-toggle')
         this.mobileMenu = document.querySelector('.mobile_menu')
         this.mobileMenuButton = document.querySelectorAll('.mobile_menu-item')
         this.mobileModalContents = document.querySelector('.mobile_tools-bar')
         this.mobileSettingsTitle = document.querySelector('.mobile_settings_title')
+        this.getQuoteMobile = document.querySelector('.summary_mobile');
+
         this.settingsTitle;
         this.currentMenuItem = 0;
 
+
+        // onload events
 
         this.handleSidebarButtonClick()
         this.handleMobileMenuButtonClick()
@@ -23,8 +31,18 @@ class SideBarActions {
         this.sidebarButtons[this.currentMenuItem].classList.add('active')
         this.mobileMenuButton[this.currentMenuItem].classList.add('active')
 
+
+        // Event Listeners
         this.closeSettingsModalBtn.addEventListener('click', this.closeSettingsModal)
         this.mobileMenuToggle.addEventListener('click', this.handleMobilemenuToggle)
+        this.getQuoteMobile.addEventListener('click', () => {
+            return this.showMobileSettingsModal('Done', 6)
+        })
+        this.getQuoteDesktop.addEventListener('click', () => {
+            this.showSettingsModal('Done', 6)
+            this.modalWrapper.classList.add('showModal')
+
+        })
     }
 
     handleSidebarButtonClick = () => {
@@ -60,8 +78,7 @@ class SideBarActions {
                 this.settingsTitle = button.children[0].lastElementChild.textContent
                 button.classList.add('active')
 
-            
-                    this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+                this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
 
             })
         })
@@ -283,6 +300,70 @@ class SideBarActions {
         )
     }
 
+    done = () => {
+        return (
+            `
+            <div class="summary_wrapper">
+                        <div class="download_pdf">
+                            <p>Get a summary of all your selections on a PDF with images included.</p>
+                            <button class="btn btn-outline">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                    </svg>
+                                </span>
+                                <p>Download PDF</p>
+                            </button>
+                        </div>
+                        <form class="quote_form">
+                            <div class="quote_form-heading">
+                                <p>Request an individual offer for your model selection:</p>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="firstname">First Name</label>
+                                    <input type="text" name="firstname" id="firstname" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname">Last Name</label>
+                                    <input type="text" name="lastname" id="lastname" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" id="address" placeholder="Address">
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="zip-code">Zip Code</label>
+                                    <input type="number" name="zip-code" id="zip-code" placeholder="Zip Code">
+                                </div>
+                                <div class="form-group">
+                                    <label for="town">Town</label>
+                                    <input type="text" name="town" id="town" placeholder="Town">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" name="state" id="state" placeholder="State">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="number" name="phone" id="phone" placeholder="Telephone">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Phone</label>
+                                <input type="email" name="email" id="email" placeholder="Email">
+                            </div>
+                            <input type="submit" value="Send Quote" class="btn btn-secondary mt-2">
+                        </form>
+                    </div>
+            `
+        )
+    }
+
     showSettingsModal = (title, id) => {
         // if title matches show settings for title
         this.sidebarSettingsModal.scrollTop = 0;
@@ -299,6 +380,8 @@ class SideBarActions {
             this.sidebarModalContents.innerHTML = this.material()
         } else if (id === 5) {
             this.sidebarModalContents.innerHTML = this.dimension()
+        } else if (id === 6) {
+            this.sidebarModalContents.innerHTML = this.done()
         }
 
 
@@ -322,6 +405,8 @@ class SideBarActions {
             this.mobileModalContents.innerHTML = this.material()
         } else if (id === 5) {
             this.mobileModalContents.innerHTML = this.dimension()
+        } else if (id === 6) {
+            this.mobileModalContents.innerHTML = this.done()
         }
 
 
