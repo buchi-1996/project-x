@@ -935,7 +935,8 @@
     }
 
     .conf_preview .blur{
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 2fr 2fr 1fr;
     }
 
     .conf_preview .img-fluid{
@@ -943,9 +944,10 @@
         top: 60px; */
         width: 100%;
         max-width: 100%;
-        max-height: 40vh;
+        max-height: 36vh;
         border-radius: 0;
         outline-offset: 0;
+        margin: 0;
     }
 
 
