@@ -44,7 +44,15 @@ class SideBarActions {
         })
         this.getQuoteDesktop.addEventListener('click', () => {
             this.showSettingsModal('Done', 6)
-            this.modalWrapper.classList.add('showModal')
+            this.sidebarSettingsModal.classList.remove('showModal')
+
+            setTimeout(() => {
+                this.modalWrapper.classList.add('showModal')
+                this.sidebarSettingsModal.classList.add('showModal')
+            }, 40)
+
+            this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
+            this.sidebarButtons[6].classList.add('active')
 
         })
     }
@@ -88,15 +96,15 @@ class SideBarActions {
                 this.settingsTitle = button.children[0].lastElementChild.textContent
                 button.classList.add('active')
 
-                
+
 
                 this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
                 this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
 
-                 // Change active states for desktop responsive screens
+                // Change active states for desktop responsive screens
                 this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
                 this.sidebarButtons[this.currentMenuItem].classList.add('active')
-                
+
 
                 this.modalWrapper.classList.add('showModal')
 
@@ -114,7 +122,9 @@ class SideBarActions {
         console.log('yes');
         if (this.currentMenuItem <= 0) return;
         this.currentMenuItem--
-        this.settingsTitle =  this.sidebarButtons[this.currentMenuItem].children[0].lastElementChild.textContent
+        this.settingsTitle = this.sidebarButtons[this.currentMenuItem].children[0].lastElementChild.textContent
+        this.sidebarSettingsModal.classList.remove('showModal')
+
 
         setTimeout(() => {
             this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
@@ -131,11 +141,15 @@ class SideBarActions {
     }
 
     handleNextClick = () => {
+        this.sidebarSettingsModal.classList.add('showModal')
+
         console.log('yes');
         const menuLength = this.sidebarButtons.length
         if (this.currentMenuItem >= menuLength) return;
         this.currentMenuItem++
-        this.settingsTitle =  this.sidebarButtons[this.currentMenuItem].children[0].lastElementChild.textContent
+        this.settingsTitle = this.sidebarButtons[this.currentMenuItem].children[0].lastElementChild.textContent
+
+        this.sidebarSettingsModal.classList.remove('showModal')
 
         setTimeout(() => {
             this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
