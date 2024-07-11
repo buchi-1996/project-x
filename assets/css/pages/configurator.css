@@ -888,10 +888,10 @@
        
     }
 
-    .conf_body{
+    /* .conf_body{
         height: 100%;
         overflow: auto;
-    }
+    } */
 
     .conf_header .mobile_menu{
         display: block;
