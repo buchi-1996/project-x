@@ -75,8 +75,8 @@
 }
 
 .conf_header{
-    position: sticky;
-    top: 0;
+    /* position: sticky;
+    top: 0; */
     z-index: 9999;
     width: 100%; 
     height: 60px;
@@ -365,14 +365,14 @@
     right: 0;
     transform: translate(-100%);
     width: calc(600px - 250px);
-    height: 100%;
+    height: 100vh;
     background: var(--blue-opacity);
     background-image: radial-gradient(80.1% 100% at 50% 0%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
     backdrop-filter: blur(100px);
     color: #fff;
     transition: all 100ms ease-in-out;
     z-index: 99;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .tools_sidebar.showModal{
@@ -380,6 +380,28 @@
     /* background: green; */
     
 }
+
+.tools_sidebar-content{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    overflow: auto;
+    height: calc(100vh - 140px);
+}
+
+.tools_sidebar-bottom-nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-content: center;
+    gap: 14px;
+    background: var(--main-black);
+    background-image: radial-gradient(80.5% 100% at 50% 0%, rgba(38, 142, 245, 0.159) 0%, rgba(38, 140, 245, 0) 100%);
+    height: 70px;
+    padding: 20px;
+}
+
+
+
 
 
 .tools_sidebar_heading{
@@ -389,6 +411,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 70px;
+
     padding: 20px 20px;
     z-index: 99;
 }
@@ -447,11 +471,7 @@
 
 
 /* Door Samples Options */
-.tools_sidebar-content{
-    display: flex;
-    flex-direction: column;
-    padding: 30px 20px;
-}
+
 
 .house-sample{
     border: 2px dashed #aaa;
@@ -476,10 +496,8 @@
 
 
 .house-fronts{
-    flex: 1;
     list-style-type: none;
     margin: 20px 0;
-    overflow-y: auto;
     display: grid;
     gap: 8px;
     
@@ -805,7 +823,7 @@
 .quote_form .form-group input{
     width: 100%;
     height: 40px;
-    font-size: .9rem;
+    font-size: .8rem;
     color: #eee;
     background: transparent;
     padding: 10px;
@@ -921,8 +939,8 @@
     }
 
     .conf_preview .img-fluid{
-        position: sticky;
-        top: 60px;
+        /* position: sticky;
+        top: 60px; */
         width: 100%;
         max-width: 100%;
         max-height: 40vh;
