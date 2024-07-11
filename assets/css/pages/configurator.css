@@ -891,7 +891,7 @@
 
     .conf_body{
         height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .conf_header .mobile_menu{
@@ -936,6 +936,7 @@
     }
 
     .conf_preview .blur{
+        height: 100vh;
         display: grid;
         grid-template-columns: 1fr 2fr 2fr 1fr;
     }
