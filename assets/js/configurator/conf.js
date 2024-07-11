@@ -1,11 +1,15 @@
 class SideBarActions {
     constructor() {
+        this.settingsTitle;
+        this.currentMenuItem = 0;
         this.sidebarButtons = document.querySelectorAll('.sidebar_menu-item')
         this.sidebarSettingsModal = document.querySelector('.tools_sidebar')
         this.modalWrapper = document.querySelector('.conf_sidebar_wrapper')
         this.sidebarModalContents = document.querySelector('.tools_sidebar-content')
         this.closeSettingsModalBtn = document.querySelector('.settings-close-btn')
         this.getQuoteDesktop = document.querySelector('.summary');
+        this.prevMenu = document.querySelector('.prev-btn');
+        this.nextMenu = document.querySelector('.next-btn');
 
 
         // Mobile
@@ -16,12 +20,10 @@ class SideBarActions {
         this.mobileSettingsTitle = document.querySelector('.mobile_settings_title')
         this.getQuoteMobile = document.querySelector('.summary_mobile');
 
-        this.settingsTitle;
-        this.currentMenuItem = 0;
+
 
 
         // onload events
-
         this.handleSidebarButtonClick()
         this.handleMobileMenuButtonClick()
         this.showSettingsModal('Door Frame', 0)
@@ -35,6 +37,8 @@ class SideBarActions {
         // Event Listeners
         this.closeSettingsModalBtn.addEventListener('click', this.closeSettingsModal)
         this.mobileMenuToggle.addEventListener('click', this.handleMobilemenuToggle)
+        this.prevMenu.addEventListener('click', this.handlePrevClick)
+        this.nextMenu.addEventListener('click', this.handleNextClick)
         this.getQuoteMobile.addEventListener('click', () => {
             return this.showMobileSettingsModal('Done', 6)
         })
@@ -45,13 +49,14 @@ class SideBarActions {
         })
     }
 
+    // Methods
     handleSidebarButtonClick = () => {
         this.sidebarButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
                 this.currentMenuItem = +button.dataset.id
                 console.log(button);
-                // reset active states
+                // reset active states for desktop
                 this.closeSettingsModal();
 
                 this.settingsTitle = button.children[0].lastElementChild.textContent
@@ -60,7 +65,14 @@ class SideBarActions {
 
                 setTimeout(() => {
                     this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
+                    this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
                 }, 40);
+                // Change active states for mobile responsive screens
+                this.mobileMenuButton.forEach(btn => btn.classList.remove('active'));
+                this.mobileMenuButton[this.currentMenuItem].classList.add('active')
+
+
+
             })
         })
     }
@@ -72,20 +84,71 @@ class SideBarActions {
                 this.mobileMenuButton.forEach(btn => btn.classList.remove('active'));
                 this.currentMenuItem = +button.dataset.id
                 console.log(button);
-                // reset active states
-                this.closeSettingsModal();
-
+                // reset active states for mobile
                 this.settingsTitle = button.children[0].lastElementChild.textContent
                 button.classList.add('active')
 
+                
+
                 this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+                this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
+
+                 // Change active states for desktop responsive screens
+                this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
+                this.sidebarButtons[this.currentMenuItem].classList.add('active')
+                
+
+                this.modalWrapper.classList.add('showModal')
+
 
             })
         })
+
     }
 
     handleMobilemenuToggle = (e) => {
         this.mobileMenu.classList.toggle('show_mobile_menu')
+    }
+
+    handlePrevClick = () => {
+        console.log('yes');
+        if (this.currentMenuItem <= 0) return;
+        this.currentMenuItem--
+        this.settingsTitle =  this.sidebarButtons[this.currentMenuItem].children[0].lastElementChild.textContent
+
+        setTimeout(() => {
+            this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
+            this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+        }, 40);
+
+        this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
+        this.sidebarButtons[this.currentMenuItem].classList.add('active')
+        // Change active states for mobile responsive screens
+        this.mobileMenuButton.forEach(btn => btn.classList.remove('active'));
+        this.mobileMenuButton[this.currentMenuItem].classList.add('active')
+
+
+    }
+
+    handleNextClick = () => {
+        console.log('yes');
+        const menuLength = this.sidebarButtons.length
+        if (this.currentMenuItem >= menuLength) return;
+        this.currentMenuItem++
+        this.settingsTitle =  this.sidebarButtons[this.currentMenuItem].children[0].lastElementChild.textContent
+
+        setTimeout(() => {
+            this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
+            this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+        }, 40);
+
+        this.sidebarButtons.forEach(btn => btn.classList.remove('active'));
+        this.sidebarButtons[this.currentMenuItem].classList.add('active')
+        // Change active states for mobile responsive screens
+        this.mobileMenuButton.forEach(btn => btn.classList.remove('active'));
+        this.mobileMenuButton[this.currentMenuItem].classList.add('active')
+
+
     }
 
     // Sidebar Menu options
@@ -366,7 +429,7 @@ class SideBarActions {
 
     showSettingsModal = (title, id) => {
         // if title matches show settings for title
-        this.sidebarSettingsModal.scrollTop = 0;
+        this.sidebarModalContents.scrollTop = 0;
         this.sidebarSettingsModal.firstElementChild.firstElementChild.innerText = title
         if (id === 0) {
             this.sidebarModalContents.innerHTML = this.doorFrames()
@@ -391,7 +454,7 @@ class SideBarActions {
 
 
     showMobileSettingsModal = (title, id) => {
-        console.log('yes')
+        this.mobileModalContents.scrollTop = 0;
         this.mobileSettingsTitle.innerText = title
         if (id === 0) {
             this.mobileModalContents.innerHTML = this.doorFrames()
