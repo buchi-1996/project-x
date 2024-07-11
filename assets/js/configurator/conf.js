@@ -12,7 +12,7 @@ class SideBarActions {
         this.mobileMenuToggle = document.querySelector('.conf_mobile_menu-toggle')
         this.mobileMenu = document.querySelector('.mobile_menu')
         this.mobileMenuButton = document.querySelectorAll('.mobile_menu-item')
-        this.mobileModalContents = document.querySelector('.mobile_tools-bar')
+        this.mobileModalContents = document.querySelector('.mobile_tools-content')
         this.mobileSettingsTitle = document.querySelector('.mobile_settings_title')
         this.getQuoteMobile = document.querySelector('.summary_mobile');
 
