@@ -961,7 +961,7 @@
 
     .mobile_tools-bar{
         display: block;
-        /* background: red; */
+        background: red;
         height: calc(100% - 40vh - 60px - 60px)
     }
 
