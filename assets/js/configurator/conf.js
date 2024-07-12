@@ -7,6 +7,8 @@ class SideBarActions {
         this.modalWrapper = document.querySelector('.conf_sidebar_wrapper')
         this.sidebarModalContents = document.querySelector('.tools_sidebar-content')
         this.closeSettingsModalBtn = document.querySelector('.settings-close-btn')
+        this.houseFrontPreviewImg = document.querySelector('.blur')
+        this.goFullScreenBtn = document.querySelector('.full-screen')
         this.getQuoteDesktop = document.querySelector('.summary');
         this.prevMenu = document.querySelector('.prev-btn');
         this.nextMenu = document.querySelector('.next-btn');
@@ -55,9 +57,20 @@ class SideBarActions {
             this.sidebarButtons[6].classList.add('active')
 
         })
+        this.goFullScreenBtn.addEventListener('click', this.requestFullScreen)
     }
 
     // Methods
+    requestFullScreen = () => {
+        if (this.houseFrontPreviewImg.requestFullscreen) {
+            this.houseFrontPreviewImg.requestFullscreen();
+        } else if (this.houseFrontPreviewImg.webkitRequestFullscreen) { // Safari
+            this.houseFrontPreviewImg.webkitRequestFullscreen();
+        } else if (this.houseFrontPreviewImg.msRequestFullscreen) { // IE11
+            this.houseFrontPreviewImg.msRequestFullscreen();
+        }
+    }
+
     handleSidebarButtonClick = () => {
         this.sidebarButtons.forEach(button => {
             button.addEventListener('click', (e) => {
