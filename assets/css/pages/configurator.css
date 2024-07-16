@@ -599,6 +599,7 @@
     height: calc(100vh - 60px - 60px - 40vh);
     padding: 30px 20px;
     background: var(--main-black);
+    background-image: radial-gradient(85.1% 100% at 50% 0%, rgba(38, 140, 245, 0.25) 0%, rgba(38, 140, 245, 0) 100%);
     backdrop-filter: blur(150px);
     -webkit-backdrop-filter: blur(150px);
     overflow-y: auto;
