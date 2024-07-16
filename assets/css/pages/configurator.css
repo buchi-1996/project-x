@@ -116,10 +116,10 @@
     position: absolute;
     display: none;
     overflow-y: auto;
-    height: 100vh;
+    height: 100dvh;
     top: 60px;
     width: 100%;
-    padding: 20px 0 0;
+    /* padding: 20px 0 0; */
     z-index: 9999999999999999999999999999999999999999999999999;
     background: var(--main-black);
     transform: translateY(30%);
@@ -147,8 +147,7 @@
 
 .mobile_menu .mobile_menu-items{
     list-style-type: none;
-    margin-top: 20px;
-    height: calc(100vh - 20vh);
+    height: 100svh;
     overflow: auto;
 }
 
@@ -348,10 +347,12 @@
 
 .product_select_buttons{
     display: flex;
-    padding: 0 20px;
+    padding: 20px 20px;
     align-items: center;
     justify-content: stretch;
-    gap: 12px
+    gap: 12px;
+    background: var(--blue-opacity);
+    backdrop-filter: blur(10px);
 }
 
 .product_select_buttons button{
@@ -1017,7 +1018,6 @@
 
     .conf_header .mobile_menu{
         display: block;
-        height: 100dvh !important;
     }
 
     .conf_mobile_menu-toggle{
