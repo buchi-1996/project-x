@@ -18,9 +18,7 @@ class App {
         this.modeSwitchButtonsMobile = document.querySelectorAll('.mobile_menu .product_select_button')
         this.setDoorModeBtn = document.querySelector('.door_tab-btn')
         this.setWindowModeBtn = document.querySelector('.window_tab-btn')
-        // this.doorModelContents = document.querySelector('.door_model-contents')
-        // this.doorModelSubNavMenu = document.querySelectorAll('.door_model-options button')
-        // console.log(this.doorModelSubNavMenu)
+        
 
 
         // Mobile
@@ -654,6 +652,7 @@ class App {
         this.modalWrapper.classList.add('showModal')
         // set menu active state onload for both desktop and mobile
         this.loadActiveStates()
+        this.handelHouseFrontClick()
 
 
         // Event Listeners
@@ -825,7 +824,7 @@ class App {
 
     handleDynamicMenuButtonClick = () => {
         this.desktopMenuItems.addEventListener('click', (e) => {
-            
+
             let button = e.target;
 
             // Traverse up the DOM to find the nearest element with the class 'sidebar_menu-item'
@@ -837,6 +836,8 @@ class App {
                 // Remove the 'active' class from all currently active menu items
                 const desktopActiveItems = this.desktopMenuItems.querySelectorAll('.sidebar_menu-item');
                 desktopActiveItems.forEach(item => item.classList.remove('active'));
+                this.handelHouseFrontClick() //fectching lastest Dom
+
 
                 this.currentMenuItem = +button.dataset.id;
                 this.closeSettingsModal();
@@ -1000,12 +1001,6 @@ class App {
     }
 
 
-    handleDoorSubNavSwitch = () => {
-        const subNavButtons = document.querySelectorAll('.door_model-options button')
-        console.log(subNavButtons);
-        
-    }
-
 
 
     closeSettingsModal = () => {
@@ -1024,8 +1019,40 @@ class App {
         } else if (this.houseFrontPreviewImg.msRequestFullscreen) { // IE11
             this.houseFrontPreviewImg.msRequestFullscreen();
         }
+        // let arr = []
+        // let create1 = new CreateSelection('door 1', '4x4', 'myimage.jpg')
+        // arr.push({name: create1._name, dimension: create1._dimension, image: create1._image})
+        // console.log(arr)
+        // // localStorage.setItem('selection', JSON.stringify(arr))
+        // try {
+        //     localStorage.setItem('ITEM', JSON.stringify(arr));
+        //     console.log('Item stored in localStorage:', localStorage.getItem('ITEM'));
+        // } catch (e) {
+        //     console.error('Error setting localStorage:', e);
+        // }
+
+    }
+
+    handelHouseFrontClick = () => {
+        const houseFrontOptions  = this.sidebarModalContents
+        console.log(houseFrontOptions)
+        houseFrontOptions.addEventListener('click', (e) => {
+        console.log(e.target)
+       })
     }
 
 }
+
+// class CreateSelection extends App{
+//     constructor(name, dimension, image){
+//         super()
+//         this._name  = name;
+//         this._dimension = dimension;
+//         this._image = image;
+//         console.log(this.appCurrentMode)
+//     }
+// }
+
+
 
 let configuratorApp = new App()

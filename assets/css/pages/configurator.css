@@ -241,11 +241,18 @@
 }
 
 .swf_logo{
-    color: #fff;
-    text-align: center;
-    margin: 0 0 50px;
-    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.swf_logo img{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+
 
 .conf_main{
     display: flex;
@@ -1030,9 +1037,7 @@
      */
     
 
-    .conf_header{
-        display: block;
-    }
+    
 
     .conf_nav-menu .helper_buttons{
         display: none
@@ -1144,6 +1149,23 @@
 
     .tools_sidebar.showModal{
         transform: translateX(100%);
+    }
+
+    .conf_header{
+        display: block;
+        display: flex;
+        align-items: center;
+    }
+
+    .swf_logo-mobile{
+        display: grid;
+        place-items: center;
+    }
+    
+    .swf_logo-mobile img{
+        width: 70px !important;
+        height: 70px !important;
+        object-fit: contain;
     }
 }
 
