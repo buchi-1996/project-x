@@ -232,10 +232,9 @@ class App {
                         </div>` : ''}
                         <div class="door_model-contents">
                             <!-- Dynamic content -->
-                            ${this.door}
-                        </div>
-                     </div>`,
-                door: `<ul class="door_model-images">
+                             
+
+                            <ul class="door_model-images">
                                 <li class="door_model-image">
                                     <span class="selected">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -261,8 +260,10 @@ class App {
                                     <img src="./assets/images/door-models/f0a13962-4c35-41fb-8ecf-a1f83941c4b8.png" alt="">
                                     <small>Door model name</small>
                                 </li>
-                            </ul>`,
-                sidePanel: `<ul class="side_panel">
+                            </ul>
+                        </div>
+                     </div>`,
+                subContent: `<ul class="side_panel">
                                 <li class="side_panel-image">
                                     <span class="selected">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -825,7 +826,6 @@ class App {
     handleDynamicMenuButtonClick = () => {
         this.desktopMenuItems.addEventListener('click', (e) => {
             
-
             let button = e.target;
 
             // Traverse up the DOM to find the nearest element with the class 'sidebar_menu-item'
