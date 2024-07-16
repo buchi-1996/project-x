@@ -287,6 +287,7 @@
 .conf_sidebar_menu{
     margin-top: 0px;
     list-style-type: none;
+    padding: 14px 5px;
 }
 
 .conf_sidebar .sidebar_menu-item{
@@ -295,7 +296,8 @@
     justify-content: space-between;
     border: none;
     background: transparent;
-    padding: 12px 20px;
+    padding: 12px 15px;
+    border-radius: 10px;
     width: 100%;
     text-align: left;
     color: #fff;
@@ -347,13 +349,10 @@
 
 .product_select_buttons{
     display: flex;
-    padding: 20px 20px;
+    padding: 0px 20px;
     align-items: center;
     justify-content: stretch;
     gap: 12px;
-    background: var(--blue-opacity);
-    backdrop-filter: blur(100px);
-    -webkit-backdrop-filter: blur(100px);
 }
 
 .product_select_buttons button{
@@ -1039,6 +1038,16 @@
      */
     
 
+     .product_select_buttons{
+        display: flex;
+        padding: 20px 20px;
+        align-items: center;
+        justify-content: stretch;
+        gap: 12px;
+        background: var(--blue-opacity);
+        backdrop-filter: blur(100px);
+        -webkit-backdrop-filter: blur(100px);
+    }
     
 
     .conf_nav-menu .helper_buttons{
@@ -1135,6 +1144,8 @@
         transition: all 100ms ease-in-out;
     
     }
+
+    
     
     .conf_main .conf_sidebar_wrapper.showModal{
         width: 250px;
