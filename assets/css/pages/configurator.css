@@ -1011,10 +1011,10 @@
        
     }
 
-    /* .conf_body{
-        height: 100%;
+    .conf_body{
+        height: 100lvh;
         overflow: auto;
-    } */
+    }
 
     .conf_header .mobile_menu{
         display: block;
