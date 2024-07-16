@@ -70,7 +70,7 @@
 
 .conf_body{
     position: relative;
-    height: 100svh;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -352,7 +352,8 @@
     justify-content: stretch;
     gap: 12px;
     background: var(--blue-opacity);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
 }
 
 .product_select_buttons button{
@@ -1011,10 +1012,10 @@
        
     }
 
-    .conf_body{
-        height: 100lvh;
+    /* .conf_body{
+        height: 100%;
         overflow: auto;
-    }
+    } */
 
     .conf_header .mobile_menu{
         display: block;
