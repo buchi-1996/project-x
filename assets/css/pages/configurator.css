@@ -1017,7 +1017,7 @@
 
     .conf_header .mobile_menu{
         display: block;
-        height: 100dvh;
+        height: 100dvh !important;
     }
 
     .conf_mobile_menu-toggle{
