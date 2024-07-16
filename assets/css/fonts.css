@@ -42,7 +42,9 @@ p, a, button, label, li {
     font-family: 'Inter', sans-serif;
 }
 
-input{
+
+
+input, span{
     font-family: 'Inter', sans-serif;
 }
 
