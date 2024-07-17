@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/loaders/GLTFLoader.js"></script>
     <title>Configurator</title>
 </head>
 
@@ -391,7 +394,7 @@
                     </div>
                 </header>
                 <div class="img-fluid">     
-                    <img src="./assets/images/f0d947fc-9db0-400d-865b-ed678b86d49b.png" alt=""> 
+                    <canvas id="renderCanvas" style="display: none;"></canvas>
                 </div>
                 <div class="mobile_tools-bar">
                     <!-- Mobile contents here -->
@@ -462,6 +465,93 @@
 
     <div class="modal_overlay"></div>
     <script src="./assets/js/configurator/conf.js"></script>
+    <script>
+        // Create the scene
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xdddddd); // Light gray background color (RGB: 221, 221, 221)
+
+        // Create the camera
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 1, 2);
+
+        // Create the renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add orbit controls
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.25;
+        controls.screenSpacePanning = false;
+        controls.maxPolarAngle = Math.PI / 2;
+
+        // Add lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); // Increased ambient light for overall brightness
+        scene.add(ambientLight);
+
+        // Sunlight 1 (Right side)
+        const sunLight1 = new THREE.DirectionalLight(0xffffff, 1);
+        sunLight1.position.set(5, 10, 7.5); // Position of the first sun (right side)
+        scene.add(sunLight1);
+
+        // Sunlight 2 (Left side, increased intensity)
+        const sunLight2 = new THREE.DirectionalLight(0xffffff, 0.8); // Increased intensity to 0.8
+        sunLight2.position.set(-5, 5, -7.5); // Position of the second sun (left side)
+        scene.add(sunLight2);
+
+        // Load the GLB model
+        const loader = new THREE.GLTFLoader();
+        loader.load('another.glb', function (gltf) {
+            gltf.scene.traverse(function (node) {
+                if (node.isMesh) {
+                    // Ensure the material is double-sided
+                    node.material.side = THREE.DoubleSide;
+                    node.material.needsUpdate = true; // Ensure the material updates
+
+                    // Example: Adjust emissive properties for specific meshes (e.g., named 'Door')
+                    if (node.name === 'Plane 001') { // Assuming the door's name in the model is 'Door'
+                        node.material.emissive = new THREE.Color(0xffffff);
+                        node.material.emissiveIntensity = 0.5; // Increase as necessary
+                    }
+                }
+            });
+            scene.add(gltf.scene);
+
+            // Render the scene to the hidden canvas
+            const renderCanvas = document.getElementById('renderCanvas');
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.render(scene, camera);
+
+            // Convert canvas to image data URL
+            const imageDataURL = renderCanvas.toDataURL();
+
+            // Update the img src with the rendered image
+            const renderedImage = document.getElementById('renderedImage');
+            renderedImage.src = imageDataURL;
+
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.render(scene, camera); // Render again on resize
+        });
+
+        // Animation loop
+        const animate = function () {
+            requestAnimationFrame(animate);
+
+            controls.update();
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
 </body>
 
 </html>
