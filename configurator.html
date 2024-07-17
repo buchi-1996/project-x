@@ -502,7 +502,7 @@
 
         // Load the GLB model
         const loader = new THREE.GLTFLoader();
-        loader.load('another.glb', function (gltf) {
+        loader.load('./another.glb', function (gltf) {
             gltf.scene.traverse(function (node) {
                 if (node.isMesh) {
                     // Ensure the material is double-sided
