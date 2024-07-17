@@ -1074,9 +1074,7 @@ class App {
         if (this.sidebarModalContents) {
             // console.log('First element child exists:', this.sidebarModalContents.firstElementChild.children[1]);
             // console.log('element', document.querySelectorAll('.door_model-image'));
-
             const doorModels = document.querySelectorAll('.door_model-image');
-            doorModels[0].classList.add('active');
             doorModels.forEach((door, index) => {
                 door.addEventListener('click', () => {
                     // effect changes
@@ -1086,7 +1084,7 @@ class App {
                     // Add "active" class to the clicked item
                     door.classList.add('active');
 
-                    console.log(door, index)
+                    // console.log(door, index)
                 })
             })
         }
