@@ -4,6 +4,7 @@ class App {
         this.selectedFrameCount = 2
         this.settingsTitle;
         this.currentMenuItem = 0;
+        this.currentMenuTab;
         this.sidebarSettingsModal = document.querySelector('.tools_sidebar')
         this.modalWrapper = document.querySelector('.conf_sidebar_wrapper')
         this.sidebarModalContents = document.querySelector('.tools_sidebar-content')
@@ -18,7 +19,7 @@ class App {
         this.modeSwitchButtonsMobile = document.querySelectorAll('.mobile_menu .product_select_button')
         this.setDoorModeBtn = document.querySelector('.door_tab-btn')
         this.setWindowModeBtn = document.querySelector('.window_tab-btn')
-        
+
 
 
         // Mobile
@@ -231,7 +232,6 @@ class App {
                         <div class="door_model-contents">
                             <!-- Dynamic content -->
                              
-
                             <ul class="door_model-images">
                                 <li class="door_model-image">
                                     <span class="selected">
@@ -243,24 +243,45 @@ class App {
                                     <small>Door model name</small>
                                 </li>
                                 <li class="door_model-image">
+                                <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
                                     <img src="./assets/images/door-models/120b7cd9-e319-4856-b5fe-db819d9a03c1.png" alt="">
                                     <small>Door model name</small>
                                 </li>
                                 <li class="door_model-image">
+                                <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
                                     <img src="./assets/images/door-models/371d02d9-c3c7-4743-aae6-682a7825ebf7.png" alt="">
                                     <small>Door model name</small>
                                 </li>
                                 <li class="door_model-image">
+                                <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
                                     <img src="./assets/images/door-models/4d04bd76-6975-4cc2-b8dc-17539556f77d.png" alt="">
                                     <small>Door model name</small>
                                 </li>
                                 <li class="door_model-image">
+                                <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
                                     <img src="./assets/images/door-models/f0a13962-4c35-41fb-8ecf-a1f83941c4b8.png" alt="">
                                     <small>Door model name</small>
                                 </li>
                             </ul>
                         </div>
                      </div>`,
+
                 subContent: `<ul class="side_panel">
                                 <li class="side_panel-image">
                                     <span class="selected">
@@ -652,7 +673,7 @@ class App {
         this.modalWrapper.classList.add('showModal')
         // set menu active state onload for both desktop and mobile
         this.loadActiveStates()
-        this.handelHouseFrontClick()
+        this.getCurrentToolsBarContent()
 
 
         // Event Listeners
@@ -836,7 +857,6 @@ class App {
                 // Remove the 'active' class from all currently active menu items
                 const desktopActiveItems = this.desktopMenuItems.querySelectorAll('.sidebar_menu-item');
                 desktopActiveItems.forEach(item => item.classList.remove('active'));
-                this.handelHouseFrontClick() //fectching lastest Dom
 
 
                 this.currentMenuItem = +button.dataset.id;
@@ -850,8 +870,8 @@ class App {
                 setTimeout(() => {
                     this.showSettingsModal(this.settingsTitle, this.currentMenuItem);
                     this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem);
+                    this.getCurrentToolsBarContent()
                 }, 40);
-
                 // Change active states for desktop responsive screens
                 const mobileActiveItems = this.mobileMenu.querySelectorAll('.mobile_menu-item');
                 mobileActiveItems.forEach(item => item.classList.remove('active'));
@@ -1033,12 +1053,45 @@ class App {
 
     }
 
-    handelHouseFrontClick = () => {
-        const houseFrontOptions  = this.sidebarModalContents
-        console.log(houseFrontOptions)
-        houseFrontOptions.addEventListener('click', (e) => {
-        console.log(e.target)
-       })
+    getCurrentToolsBarContent = () => {
+        let id;
+        this.doorItemMenus.forEach((menu) => {
+            if (this.currentMenuItem === menu.id) {
+                this.currentMenuTab = menu
+                id = menu.id
+            }
+        })
+        this.handleModelSelection()
+    }
+
+    handleModelSelection = () => {
+        // Access first element child if it exists
+        // console.log('First Child:', this.sidebarModalContents.firstChild);
+        // console.log('First Element Child:', this.sidebarModalContents.firstElementChild);
+        // console.log('All Child Nodes:', this.sidebarModalContents.childNodes);
+        // console.log('All Element Children:', this.sidebarModalContents.children);
+
+        if (this.sidebarModalContents) {
+            // console.log('First element child exists:', this.sidebarModalContents.firstElementChild.children[1]);
+            // console.log('element', document.querySelectorAll('.door_model-image'));
+
+            const doorModels = document.querySelectorAll('.door_model-image');
+            doorModels[0].classList.add('active');
+            doorModels.forEach((door, index) => {
+                door.addEventListener('click', () => {
+                    // effect changes
+                    // Remove "active" class from all items
+                    doorModels.forEach(door => door.classList.remove('active'));
+
+                    // Add "active" class to the clicked item
+                    door.classList.add('active');
+
+                    console.log(door, index)
+                })
+            })
+        }
+
+
     }
 
 }

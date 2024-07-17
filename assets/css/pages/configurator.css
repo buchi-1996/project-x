@@ -937,6 +937,16 @@
     transition: all .5s ease;
 }
 
+.door_model-image .selected {
+    display: none; /* Hide the tick icon by default */
+}
+
+.door_model-image.active .selected {
+    display: flex;
+    align-items: center;
+    justify-content: center /* Show the tick icon when the list item is active */
+}
+
 .door_model-image img{
     width: 100%;
     height: 100%;
@@ -952,6 +962,8 @@
 .door_model-images .door_model-image small{
     margin-top: 20px;
 }
+
+
 
 /* Side Panels */
 .side_panel{
