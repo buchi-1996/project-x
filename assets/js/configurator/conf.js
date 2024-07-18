@@ -1076,7 +1076,7 @@ class App {
             // console.log('element', document.querySelectorAll('.door_model-image'));
 
             const doorModels = document.querySelectorAll('.door_model-image');
-            doorModels[0].classList.add('active');
+            // doorModels[0].classList.add('active');
             doorModels.forEach((door, index) => {
                 door.addEventListener('click', () => {
                     // effect changes
