@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.142.0/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- Babylon.js library -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <!-- Babylon.js loader for glTF models -->
+    <script src="https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.min.js"></script>
     <title>Configurator</title>
 </head>
 
@@ -394,7 +395,7 @@
                     </div>
                 </header>
                 <div class="img-fluid">     
-                    <canvas id="renderCanvas" style="display: none;"></canvas>
+                    <canvas id="renderCanvas"></canvas> 
                 </div>
                 <div class="mobile_tools-bar">
                     <!-- Mobile contents here -->
@@ -465,7 +466,64 @@
 
     <div class="modal_overlay"></div>
     <script src="./assets/js/configurator/conf.js"></script>
-    <script src="https://render.pxxl.space/render.js"></script>
+    <script>
+        // Get the canvas element
+        const canvas = document.getElementById('renderCanvas');
+
+        // Create the Babylon.js engine
+        const engine = new BABYLON.Engine(canvas, true);
+
+        // Create the scene
+        const createScene = () => {
+            const scene = new BABYLON.Scene(engine);
+
+            // Create a basic light
+            const light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 1, 0), scene);
+
+            // Create additional lights for better illumination
+            const directionalLight1 = new BABYLON.DirectionalLight('dir01', new BABYLON.Vector3(1, -1, 0), scene);
+            directionalLight1.position = new BABYLON.Vector3(20, 40, 20);
+            directionalLight1.intensity = 1;
+
+            const directionalLight2 = new BABYLON.DirectionalLight('dir02', new BABYLON.Vector3(-1, -1, 0), scene);
+            directionalLight2.position = new BABYLON.Vector3(-20, 40, -20);
+            directionalLight2.intensity = 1;
+
+            // Create a camera
+            const camera = new BABYLON.ArcRotateCamera('camera1', Math.PI / 2, Math.PI / 4, 6, BABYLON.Vector3.Zero(), scene);
+            camera.attachControl(canvas, true);
+
+            // Load an environment texture for better lighting
+            const hdrTexture = new BABYLON.CubeTexture.CreateFromPrefilteredData('https://playground.babylonjs.com/textures/environment.dds', scene);
+            scene.environmentTexture = hdrTexture;
+
+            // Load a 3D model from the same directory
+            BABYLON.SceneLoader.Append('', 'single.glb', scene, function (scene) {
+                // The model is loaded and added to the scene
+                // Adjust camera to focus on the model
+                scene.createDefaultCameraOrLight(true, true, true);
+                const mainCamera = scene.activeCamera;
+                mainCamera.alpha = Math.PI / 2;  // Set to the front
+                mainCamera.beta = Math.PI / 4;  // Tilt the camera
+                mainCamera.radius = 5;  // Zoom out
+            });
+
+            return scene;
+        };
+
+        // Create the scene
+        const scene = createScene();
+
+        // Run the render loop
+        engine.runRenderLoop(() => {
+            scene.render();
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            engine.resize();
+        });
+    </script>
 </body>
 
 </html>
