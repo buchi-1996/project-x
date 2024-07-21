@@ -582,6 +582,16 @@
     transform: scale(0.9);
 }
 
+.door-frames .door-frame .selected{
+    display: none;
+}
+
+.door-frames .door-frame.active .selected{
+    display: flex;
+    align-items: center;
+    justify-content: center /* Show the tick icon when the list item is active */
+}
+
 .door-frame img{
     width: 90px;
     height: auto;
@@ -652,6 +662,16 @@
 
 .door-types .door-type:hover{
     transform: scale(0.9);
+}
+
+.door-types .door-type .selected{
+    display: none;
+}
+
+.door-types .door-type.active .selected{
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
 
 .door-type img{
@@ -910,7 +930,7 @@
 
 .door_model .door_model-options{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     z-index: 99999;
     gap: 10px;
     margin-bottom: 30px;
@@ -918,6 +938,17 @@
 
 .door_model-options button{
     font-size: .8rem;
+    padding: 8px 3px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    transition: all .1s ease-in
+}
+
+.door_model-options button.active{
+    color: #fff;
+    background: #2E4CFA;
+    border: 1px solid var(--primary-color);
 }
 
 .door_model-images{

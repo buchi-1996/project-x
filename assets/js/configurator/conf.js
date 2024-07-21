@@ -1,10 +1,15 @@
+import { frames, houseFronts, catalogs } from './api.js';
+
 class App {
     constructor() {
         this.appCurrentMode = 'door';
-        this.selectedFrameCount = 2
+        this.selectedFrameForm = frames[0].form
+        this.currentDoorFrame = 0
+        this.currentTab = this.selectedFrameForm.indexOf(1); // Index of the currently active tab
+        this.currentSelectedIndices = [0, 0, 0];
+        this.currentCatalog = 0
         this.settingsTitle;
         this.currentMenuItem = 0;
-        this.currentMenuTab;
         this.sidebarSettingsModal = document.querySelector('.tools_sidebar')
         this.modalWrapper = document.querySelector('.conf_sidebar_wrapper')
         this.sidebarModalContents = document.querySelector('.tools_sidebar-content')
@@ -19,6 +24,7 @@ class App {
         this.modeSwitchButtonsMobile = document.querySelectorAll('.mobile_menu .product_select_button')
         this.setDoorModeBtn = document.querySelector('.door_tab-btn')
         this.setWindowModeBtn = document.querySelector('.window_tab-btn')
+        console.log(frames)
 
 
 
@@ -29,6 +35,8 @@ class App {
         this.mobileSettingsTitle = document.querySelector('.mobile_settings_title')
         this.getQuoteMobile = document.querySelector('.summary_mobile');
         this.mobileMenuItems = document.querySelector('.mobile_menu-items');
+
+
 
 
         // Door Menus
@@ -44,55 +52,18 @@ class App {
                             </svg>
                     </span>`,
                 content: `<ul class="door-frames">
-                        <li class="door-frame">
+                        
+                        ${frames.map(frame => (
+                    `<li class="door-frame">
                             <span class="selected">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                   </svg>                                  
                             </span>
-                            <img src="./assets/images/frames/frame-sample-1.png" width="400px" alt="">
-                            <small>frame 1</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-2.png" alt="">
-                            <small>frame 2</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-3.png" alt="">
-                            <small>frame 3</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-4.png" alt="">
-                            <small>frame 4</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-5.png" alt="">
-                            <small>frame 5</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-6.png" alt="">
-                            <small>frame 6</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-7.png" alt="">
-                            <small>frame 7</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-8.png" alt="">
-                            <small>frame 8</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-9.png" alt="">
-                            <small>frame 9</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-10.png" alt="">
-                            <small>frame 10</small>
-                        </li>
-                        <li class="door-frame">
-                            <img src="./assets/images/frames/frame-sample-11.png" alt="">
-                            <small>frame 11</small>
-                        </li>
+                            <img src=${frame.image} alt="">
+                            <small>${frame.title}</small>
+                        </li>`
+                )).join('')}
                      </ul>`
             },
             {
@@ -163,29 +134,16 @@ class App {
                     </form>
                     <!-- House fronts -->
                     <ul class="house-fronts">
-                        <li class="house-front">
+                        ${houseFronts.map(front => (
+                    `<li class="house-front">
                         <span class="selected">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                   </svg>                                  
                             </span>
-                            <img src="./assets/images/house-front/c53a5bf9-d20c-441c-840b-114e267968cf.png" alt="">
-                        </li>
-                        <li class="house-front">
-                            <img src="./assets/images/house-front/c5a1d5c1-4257-4c53-bbef-e975ca66ebf9.png" alt="">
-                        </li>
-                        <li class="house-front">
-                            <img src="./assets/images/house-front/cc6b221e-9b3a-49eb-b8ec-6f4fec8c51c6.png" alt="">
-                        </li>
-                        <li class="house-front">
-                            <img src="./assets/images/house-front/0fe4cc53-f90c-4f07-89a8-a369814d5a6d.png" alt="">
-                        </li>
-                        <li class="house-front">
-                            <img src="./assets/images/house-front/3f2bd0a3-e074-4ce0-bfec-80d3d33d89b7.png" alt="">
-                        </li>
-                        <li class="house-front">
-                            <img src="./assets/images/house-front/6ca6e2eb-4a8b-4e7a-ba90-74386173fc0c.png" alt="">
-                        </li>
+                            <img src=${front.image.single} alt="">
+                        </li>`
+                )).join('')}
                     </ul>`
             },
             {
@@ -197,23 +155,17 @@ class App {
                             </svg>
                         </span>`,
                 content: `<ul class="door-types">
-                        <li class="door-type">
+                        ${catalogs.map(catalog => (
+                    `<li class="door-type">
                         <span class="selected">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                   </svg>                                  
                             </span>
-                            <img src="./assets/images/door-types/57b92214-fd08-4a49-9381-b6c2bd8a0f8c.png" alt="">
-                            <small>Front door</small>
-                        </li>
-                        <li class="door-type">
-                            <img src="./assets/images/door-types/70bae32b-aa87-47e7-b397-4a3b34a40afe.png" alt="">
-                            <small>Back door</small>
-                        </li>
-                        <li class="door-type">
-                            <img src="./assets/images/door-types/9ff9be81-e5be-4711-aa29-610a8514d7fa.png" alt="">
-                            <small>Patio door</small>
-                        </li>                     
+                            <img src=${catalog.image} alt="">
+                            <small>${catalog.title}</small>
+                        </li>`
+                )).join('')}                    
                      </ul>`
             },
             {
@@ -225,65 +177,60 @@ class App {
                             </svg>
                         </span>`,
                 content: `<div class="door_model">
-                        ${this.selectedFrameCount > 1 ? `<div class="door_model-options">
-                            <button class="btn btn-secondary">Door</button>
-                            <button class="btn btn-outline">Side Panel</button>
-                        </div>` : ''}
+                        <div class="door_model-options">
+                        ${this.createFrameTabButtons(this.selectedFrameForm)}
+                        </div>
                         <div class="door_model-contents">
                             <!-- Dynamic content -->
-                             
                             <ul class="door_model-images">
-                                <li class="door_model-image">
+                            ${catalogs[this.currentCatalog].models.map(model => (
+                    `<li class="door_model-image">
                                     <span class="selected">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src="./assets/images/door-models/00c4746b-3a4f-443e-9486-c805a76ffa41.png" alt="">
-                                    <small>Door model name</small>
-                                </li>
-                                <li class="door_model-image">
-                                <span class="selected">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                          </svg>                                  
-                                    </span>
-                                    <img src="./assets/images/door-models/120b7cd9-e319-4856-b5fe-db819d9a03c1.png" alt="">
-                                    <small>Door model name</small>
-                                </li>
-                                <li class="door_model-image">
-                                <span class="selected">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                          </svg>                                  
-                                    </span>
-                                    <img src="./assets/images/door-models/371d02d9-c3c7-4743-aae6-682a7825ebf7.png" alt="">
-                                    <small>Door model name</small>
-                                </li>
-                                <li class="door_model-image">
-                                <span class="selected">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                          </svg>                                  
-                                    </span>
-                                    <img src="./assets/images/door-models/4d04bd76-6975-4cc2-b8dc-17539556f77d.png" alt="">
-                                    <small>Door model name</small>
-                                </li>
-                                <li class="door_model-image">
-                                <span class="selected">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                          </svg>                                  
-                                    </span>
-                                    <img src="./assets/images/door-models/f0a13962-4c35-41fb-8ecf-a1f83941c4b8.png" alt="">
-                                    <small>Door model name</small>
-                                </li>
+                                    <img src=${model.image} alt="">
+                                    <small>${model.modelNumber}</small>
+                                </li>`
+                )).join('')}
+                                
                             </ul>
                         </div>
                      </div>`,
-
-                subContent: `<ul class="side_panel">
-                                <li class="side_panel-image">
+                door: `<ul class="door_model-images">
+                ${catalogs[this.currentCatalog].models.map(model => (
+                    `<li class="door_model-image">
+                        <span class="selected">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                              </svg>                                  
+                        </span>
+                        <img src=${model.image} alt="">
+                        <small>${model.modelNumber}</small>
+                    </li>`
+                )).join('')}
+                            </ul>`,
+                sidepanel1: `<ul class="door_model-images side_panel">
+                                <li class="door_model-image side_panel-image">
+                                    <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
+                                    <img src="./assets/images/side-panels/98c16943-3589-4844-b034-fb204ee2bdf4.png" alt="">
+                                </li>
+                                <li class="door_model-image side_panel-image">
+                                <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
+                                    <img src="./assets/images/side-panels/df4d1e83-14c3-44f0-979d-af43c5d1c6d9.png" alt="">
+                                </li>
+                             </ul>`,
+                sidePanel2: `<ul class="door_model-images side_panel">
+                                <li class="door_model-image side_panel-image">
                                     <span class="selected">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
@@ -671,9 +618,9 @@ class App {
         this.showSettingsModal('Door Frame', 0)
         this.showMobileSettingsModal('Door Frame', 0)
         this.modalWrapper.classList.add('showModal')
+        this.getCurrentToolsBarContent()
         // set menu active state onload for both desktop and mobile
         this.loadActiveStates()
-        this.getCurrentToolsBarContent()
 
 
         // Event Listeners
@@ -707,6 +654,63 @@ class App {
     }
 
 
+    createFrameTabButtons = (form) => {
+        let buttonsMarkup = '';
+
+        if (form.length > 1) {
+
+            form.forEach(type => {
+                if (type === 0) {
+                    buttonsMarkup += `
+                        <button class="btn side_panel-tab" data-id="${type}">
+                            Side Panel
+                        </button>`;
+                } else if (type === 1) {
+                    buttonsMarkup += `
+                        <button class="btn door_tab" data-id="${type}">
+                            Door
+                        </button>`;
+                }
+            });
+        }
+
+        return buttonsMarkup;
+    }
+
+    updateFrameTabButtons = (currentMenu) => {
+        if (currentMenu === +this.currentMenuItem) {
+            document.querySelector('.tools_sidebar-content .door_model-options').innerHTML = this.createFrameTabButtons(this.selectedFrameForm)
+            document.querySelector('.mobile_tools-bar .door_model-options').innerHTML = this.createFrameTabButtons(this.selectedFrameForm)
+            this.currentTab = this.selectedFrameForm.indexOf(1)
+            this.handleModelSelection()
+
+        }
+    }
+
+
+    updateCatalogModels = (currentMenu) => {
+        // console.log(document.querySelector('.tools_sidebar-content .door_model-images'));
+        if (currentMenu === +this.currentMenuItem){
+            this.doorItemMenus[currentMenu].door = `<ul class="door_model-images">
+            ${catalogs[this.currentCatalog].models.map(model => (
+                `<li class="door_model-image">
+                    <span class="selected">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                          </svg>                                  
+                    </span>
+                    <img src=${model.image} alt="">
+                    <small>${model.modelNumber}</small>
+                </li>`
+            )).join('')}
+        </ul>`
+               
+            this.handleModelSelection()
+        }
+
+    }
+
+
     // Methods
     setAppMode = () => {
         if (this.appCurrentMode === 'door') {
@@ -729,6 +733,7 @@ class App {
             // Update the menu items based on the current mode
             this.displayMenuItems();
 
+
             // Reapply the active class to the first menu item
             const desktopMenuItems = document.querySelectorAll('.sidebar_menu-item');
             desktopMenuItems[this.currentMenuItem].classList.add('active');
@@ -748,12 +753,16 @@ class App {
         this.modeSwitchButtonsDesktop.forEach((button, index) => {
             button.addEventListener('click', (e) => {
                 switchMode(e.target.textContent, index);
+                this.getCurrentToolsBarContent()
+
             });
         });
 
         this.modeSwitchButtonsMobile.forEach((button, index) => {
             button.addEventListener('click', (e) => {
                 switchMode(e.target.textContent, index);
+                this.getCurrentToolsBarContent()
+
             });
         });
     };
@@ -876,6 +885,7 @@ class App {
                 const mobileActiveItems = this.mobileMenu.querySelectorAll('.mobile_menu-item');
                 mobileActiveItems.forEach(item => item.classList.remove('active'));
                 mobileActiveItems[this.currentMenuItem].classList.add('active')
+                console.log(this.currentMenuItem);
 
             }
         });
@@ -901,6 +911,8 @@ class App {
 
                 this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
                 this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
+                this.getCurrentToolsBarContent()
+
 
                 // Change active states for desktop responsive screens
                 const desktopActiveItems = this.desktopMenuItems.querySelectorAll('.sidebar_menu-item');
@@ -933,6 +945,7 @@ class App {
         setTimeout(() => {
             this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
             this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+            this.getCurrentToolsBarContent()
         }, 40);
 
         desktopActiveItems.forEach(item => item.classList.remove('active'));
@@ -960,6 +973,8 @@ class App {
         setTimeout(() => {
             this.showSettingsModal(this.settingsTitle, this.currentMenuItem)
             this.showMobileSettingsModal(this.settingsTitle, this.currentMenuItem)
+            this.getCurrentToolsBarContent()
+
         }, 40);
 
         desktopActiveItems.forEach(item => item.classList.remove('active'));
@@ -969,6 +984,7 @@ class App {
         const mobileActiveItems = this.mobileMenu.querySelectorAll('.mobile_menu-item');
         mobileActiveItems.forEach(item => item.classList.remove('active'));
         mobileActiveItems[this.currentMenuItem].classList.add('active')
+
     }
 
 
@@ -1054,47 +1070,254 @@ class App {
     }
 
     getCurrentToolsBarContent = () => {
-        let id;
-        this.doorItemMenus.forEach((menu) => {
-            if (this.currentMenuItem === menu.id) {
-                this.currentMenuTab = menu
-                id = menu.id
-            }
-        })
         this.handleModelSelection()
+        this.handleDoorFrameSelection()
+        this.handleCatalogSelection()
+        this.updateFrameTabButtons(4)
+        this.updateCatalogModels(4)
     }
 
+
+    // =====================================================================
+    // Model Selection
+    // ========================================================================
     handleModelSelection = () => {
-        // Access first element child if it exists
-        // console.log('First Child:', this.sidebarModalContents.firstChild);
-        // console.log('First Element Child:', this.sidebarModalContents.firstElementChild);
-        // console.log('All Child Nodes:', this.sidebarModalContents.childNodes);
-        // console.log('All Element Children:', this.sidebarModalContents.children);
+        // Handle Tab change
+        const tabButtonsDesktop = document.querySelectorAll('.tools_sidebar-content .door_model-options button');
+        const tabButtonsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-options button');
 
-        if (this.sidebarModalContents) {
-            // console.log('First element child exists:', this.sidebarModalContents.firstElementChild.children[1]);
-            // console.log('element', document.querySelectorAll('.door_model-image'));
+        // Add active class to the current tab on load
+        console.log(this.currentTab);
+        if (tabButtonsDesktop.length > 0) {
+            tabButtonsDesktop[this.currentTab].classList.add('active');
+        } else { console.log('passed') }
+        if (tabButtonsMobile.length > 0) {
+            tabButtonsMobile[this.currentTab].classList.add('active');
+        }
 
-            const doorModels = document.querySelectorAll('.door_model-image');
-            // doorModels[0].classList.add('active');
-            doorModels.forEach((door, index) => {
+        const handleTabClick = (index) => {
+            tabButtonsDesktop.forEach(btn => btn.classList.remove('active'));
+            tabButtonsMobile.forEach(btn => btn.classList.remove('active'));
+            if (index < tabButtonsDesktop.length) {
+                tabButtonsDesktop[index].classList.add('active');
+            }
+            if (index < tabButtonsMobile.length) {
+                tabButtonsMobile[index].classList.add('active');
+            }
+            this.currentTab = index;
+            console.log('Tab clicked', this.currentTab, this.currentSelectedIndices);
+            updateTabContent();
+            onTabSwitch();
+        };
+
+        tabButtonsDesktop.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                handleTabClick(index);
+            });
+        });
+
+        tabButtonsMobile.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                handleTabClick(index);
+            });
+        });
+
+        const syncActiveClass = (doorModelsDesktop, doorModelsMobile) => {
+            doorModelsDesktop.forEach((door, index) => {
                 door.addEventListener('click', () => {
-                    // effect changes
-                    // Remove "active" class from all items
-                    doorModels.forEach(door => door.classList.remove('active'));
+                    updateActiveClass(index, door, doorModelsDesktop, doorModelsMobile);
+                });
+            });
 
-                    // Add "active" class to the clicked item
-                    door.classList.add('active');
+            doorModelsMobile.forEach((door, index) => {
+                door.addEventListener('click', () => {
+                    updateActiveClass(index, door, doorModelsDesktop, doorModelsMobile);
+                });
+            });
+        };
 
-                    console.log(door, index)
+        // Function to update the active class for the selected item
+        const updateActiveClass = (index, door, doorModelsDesktop, doorModelsMobile) => {
+            // Update the current selected item index for the active tab
+            this.currentSelectedIndices[this.currentTab] = index;
+
+            // Remove "active" class from all items
+            doorModelsDesktop.forEach(d => d.classList.remove('active'));
+            doorModelsMobile.forEach(d => d.classList.remove('active'));
+
+            // Add "active" class to the clicked item
+            if (index >= 0) {
+                if (index < doorModelsDesktop.length) {
+                    doorModelsDesktop[index].classList.add('active');
+                }
+                if (index < doorModelsMobile.length) {
+                    doorModelsMobile[index].classList.add('active');
+                }
+            }
+
+            // Call your Function to update Door on the House Model Here
+            console.log('Clicked door index:', door, index);
+        };
+
+        // Function to update the tab content based on the currentTab
+        const updateTabContent = () => {
+            const desktopContent = document.querySelector('.tools_sidebar .door_model-contents');
+            const mobileContent = document.querySelector('.mobile_tools-bar .door_model-contents');
+
+            if (desktopContent) {
+                if (this.selectedFrameForm[this.currentTab] === 1) {
+                    desktopContent.innerHTML = !catalogs[this.currentCatalog].models.length ? `<p>No models for the selected catalog</p>` : this.doorItemMenus[4].door;
+                } else {
+                    desktopContent.innerHTML = this.doorItemMenus[4].sidepanel1;
+                }
+            }
+
+            if (mobileContent) {
+                if (this.selectedFrameForm[this.currentTab] === 1) {
+                    mobileContent.innerHTML = !catalogs[this.currentCatalog].models.length ? `<p>No models for the selected catalog</p>` : this.doorItemMenus[4].door;
+                } else {
+                    mobileContent.innerHTML = this.doorItemMenus[4].sidepanel1;
+                }
+            }
+        };
+
+        // Call onTabSwitch Func
+        const onTabSwitch = () => {
+            // Desktop
+            if (this.sidebarModalContents && this.sidebarModalContents.firstElementChild &&
+                this.sidebarModalContents.firstElementChild.classList.contains('door_model')) {
+
+                const doorModelsDesktop = document.querySelectorAll('.tools_sidebar .door_model-image');
+                const doorModelsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-image');
+
+                if (doorModelsDesktop.length > 0 && doorModelsMobile.length > 0) {
+                    // Set the current selected item as active for the active tab
+                    if (this.currentSelectedIndices[this.currentTab] < doorModelsDesktop.length) {
+                        doorModelsDesktop[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    }
+                    if (this.currentSelectedIndices[this.currentTab] < doorModelsMobile.length) {
+                        doorModelsMobile[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    }
+                    syncActiveClass(doorModelsDesktop, doorModelsMobile);
+                } else {
+                    console.error('Door model elements not found.');
+                }
+            }
+
+            // Handle mobile view
+            if (this.mobileModalContents && this.mobileModalContents.firstElementChild &&
+                this.mobileModalContents.firstElementChild.classList.contains('door_model')) {
+
+                const doorModelsDesktop = document.querySelectorAll('.tools_sidebar .door_model-image');
+                const doorModelsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-image');
+
+                if (doorModelsMobile.length > 0 && doorModelsDesktop.length > 0) {
+                    // Set the current selected item as active for the active tab
+                    if (this.currentSelectedIndices[this.currentTab] < doorModelsMobile.length) {
+                        doorModelsMobile[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    }
+                    if (this.currentSelectedIndices[this.currentTab] < doorModelsDesktop.length) {
+                        doorModelsDesktop[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    }
+                    syncActiveClass(doorModelsMobile, doorModelsDesktop);
+                } else {
+                    console.error('Door model elements not found.');
+                }
+            }
+        };
+
+
+        updateTabContent();
+        onTabSwitch();
+    };
+
+
+    // ===========================================================================
+    // Door Frame Selection
+
+    handleDoorFrameSelection = () => {
+        // fetch the list items in door and loop through
+        // Listen for a click
+        // Update selectedFrameForm Door api form
+
+
+        if (this.sidebarModalContents && this.sidebarModalContents.firstElementChild &&
+            this.sidebarModalContents.firstElementChild.classList.contains('door-frames')) {
+
+            const doorFramesDesktop = document.querySelectorAll('.tools_sidebar-content .door-frames .door-frame')
+            const doorFramesMobile = document.querySelectorAll('.mobile_tools-bar .door-frames .door-frame')
+
+
+            doorFramesDesktop[this.currentDoorFrame].classList.add('active')
+            doorFramesMobile[this.currentDoorFrame].classList.add('active')
+
+            doorFramesDesktop.forEach((frame, index) => {
+                frame.addEventListener('click', () => {
+                    updateActiveState(index, doorFramesDesktop, doorFramesMobile)
+                    this.currentDoorFrame = index;
+                    this.selectedFrameForm = frames[index].form
+                    console.log(this.selectedFrameForm)
+
+                })
+            })
+            doorFramesMobile.forEach((frame, index) => {
+                frame.addEventListener('click', () => {
+                    updateActiveState(index, doorFramesDesktop, doorFramesMobile)
+                    this.currentDoorFrame = index
+                    this.selectedFrameForm = frames[index].form
                 })
             })
         }
 
 
+        const updateActiveState = (index, doorFramesDesktop, doorFramesMobile) => {
+            doorFramesDesktop.forEach(frame => frame.classList.remove('active'))
+            doorFramesMobile.forEach(frame => frame.classList.remove('active'))
+
+            doorFramesDesktop[index].classList.add('active')
+            doorFramesMobile[index].classList.add('active')
+        }
+
+    }
+
+    handleCatalogSelection = () => {
+        if (this.sidebarModalContents && this.sidebarModalContents.firstElementChild &&
+            this.sidebarModalContents.firstElementChild.classList.contains('door-types')) {
+
+            const doorCatalogsDesktop = document.querySelectorAll('.tools_sidebar-content .door-types .door-type')
+            const doorCatalogsMobile = document.querySelectorAll('.mobile_tools-bar .door-types .door-type')
+
+            doorCatalogsDesktop[this.currentCatalog].classList.add('active')
+            doorCatalogsMobile[this.currentCatalog].classList.add('active')
+
+            doorCatalogsDesktop.forEach((frame, index) => {
+                frame.addEventListener('click', () => {
+                    updateActiveState(index, doorCatalogsDesktop, doorCatalogsMobile)
+                    this.currentCatalog = index;
+                    console.log(this.currentCatalog);
+                })
+            })
+            doorCatalogsMobile.forEach((frame, index) => {
+                frame.addEventListener('click', () => {
+                    updateActiveState(index, doorCatalogsDesktop, doorCatalogsMobile)
+                    this.currentCatalog = index
+                })
+            })
+
+        }
+        const updateActiveState = (index, doorCatalogsDesktop, doorCatalogsMobile) => {
+            doorCatalogsDesktop.forEach(frame => frame.classList.remove('active'))
+            doorCatalogsMobile.forEach(frame => frame.classList.remove('active'))
+
+            doorCatalogsDesktop[index].classList.add('active')
+            doorCatalogsMobile[index].classList.add('active')
+        }
     }
 
 }
+
+
+
 
 // class CreateSelection extends App{
 //     constructor(name, dimension, image){
@@ -1105,6 +1328,8 @@ class App {
 //         console.log(this.appCurrentMode)
 //     }
 // }
+
+
 
 
 
