@@ -7,6 +7,7 @@ class App {
         this.currentDoorFrame = 0
         this.currentTab = this.selectedFrameForm.indexOf(1); // Index of the currently active tab
         this.currentSelectedIndices = [0, 0, 0];
+        this.currentDoorModel = 0
         this.currentCatalog = 0
         this.settingsTitle;
         this.currentMenuItem = 0;
@@ -211,7 +212,11 @@ class App {
                     </li>`
                 )).join('')}
                             </ul>`,
-                sidepanel1: `<ul class="door_model-images side_panel">
+                sidepanel1: `<div class="edit-glass">
+                                <img src="./assets/images/glassseitenteile.png" alt="">
+                                <button class="btn btn-outline">Select glass side panel</button>
+                            </div>`,
+                sidePanel2: `<ul class="door_model-images side_panel">
                                 <li class="door_model-image side_panel-image">
                                     <span class="selected">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -226,19 +231,6 @@ class App {
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src="./assets/images/side-panels/df4d1e83-14c3-44f0-979d-af43c5d1c6d9.png" alt="">
-                                </li>
-                             </ul>`,
-                sidePanel2: `<ul class="door_model-images side_panel">
-                                <li class="door_model-image side_panel-image">
-                                    <span class="selected">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                          </svg>                                  
-                                    </span>
-                                    <img src="./assets/images/side-panels/98c16943-3589-4844-b034-fb204ee2bdf4.png" alt="">
-                                </li>
-                                <li class="side_panel-image">
                                     <img src="./assets/images/side-panels/df4d1e83-14c3-44f0-979d-af43c5d1c6d9.png" alt="">
                                 </li>
                              </ul>`
@@ -1107,6 +1099,7 @@ class App {
             this.currentTab = index;
             console.log('Tab clicked', this.currentTab, this.currentSelectedIndices);
             updateTabContent();
+            moveToGlassMenu()
             onTabSwitch();
         };
 
@@ -1139,7 +1132,7 @@ class App {
         // Function to update the active class for the selected item
         const updateActiveClass = (index, door, doorModelsDesktop, doorModelsMobile) => {
             // Update the current selected item index for the active tab
-            this.currentSelectedIndices[this.currentTab] = index;
+            this.currentDoorModel = index;
 
             // Remove "active" class from all items
             doorModelsDesktop.forEach(d => d.classList.remove('active'));
@@ -1192,16 +1185,14 @@ class App {
 
                 if (doorModelsDesktop.length > 0 && doorModelsMobile.length > 0) {
                     // Set the current selected item as active for the active tab
-                    if (this.currentSelectedIndices[this.currentTab] < doorModelsDesktop.length) {
-                        doorModelsDesktop[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    if (this.currentDoorModel < doorModelsDesktop.length) {
+                        doorModelsDesktop[this.currentDoorModel].classList.add('active');
                     }
-                    if (this.currentSelectedIndices[this.currentTab] < doorModelsMobile.length) {
-                        doorModelsMobile[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    if (this.currentDoorModel < doorModelsMobile.length) {
+                        doorModelsMobile[this.currentDoorModel].classList.add('active');
                     }
                     syncActiveClass(doorModelsDesktop, doorModelsMobile);
-                } else {
-                    console.error('Door model elements not found.');
-                }
+                } 
             }
 
             // Handle mobile view
@@ -1213,18 +1204,42 @@ class App {
 
                 if (doorModelsMobile.length > 0 && doorModelsDesktop.length > 0) {
                     // Set the current selected item as active for the active tab
-                    if (this.currentSelectedIndices[this.currentTab] < doorModelsMobile.length) {
-                        doorModelsMobile[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    if (this.currentDoorModel < doorModelsMobile.length) {
+                        doorModelsMobile[this.currentDoorModel].classList.add('active');
                     }
-                    if (this.currentSelectedIndices[this.currentTab] < doorModelsDesktop.length) {
-                        doorModelsDesktop[this.currentSelectedIndices[this.currentTab]].classList.add('active');
+                    if (this.currentDoorModel < doorModelsDesktop.length) {
+                        doorModelsDesktop[this.currentDoorModel].classList.add('active');
                     }
                     syncActiveClass(doorModelsMobile, doorModelsDesktop);
-                } else {
-                    console.error('Door model elements not found.');
                 }
             }
+
+            if (this.mobileModalContents && this.mobileModalContents.firstElementChild &&
+                this.mobileModalContents.firstElementChild.classList.contains('edit-glass')){
+
+                    console.log(document.querySelector('.edit-glass'))
+                }
+
         };
+
+        const moveToGlassMenu = () => {
+            const desktopContent = document.querySelector('.tools_sidebar .door_model-contents');
+            const mobileContent = document.querySelector('.mobile_tools-bar .door_model-contents');
+
+            if (desktopContent && desktopContent.firstElementChild && desktopContent.firstElementChild.classList.contains('edit-glass')) {
+                const glassBtnDesktop = desktopContent.querySelector('.edit-glass');
+                if (glassBtnDesktop) {
+                    glassBtnDesktop.addEventListener('click', this.handleNextClick);
+                }
+            }
+        
+            if (mobileContent && mobileContent.firstElementChild && mobileContent.firstElementChild.classList.contains('edit-glass')) {
+                const glassBtnMobile = mobileContent.querySelector('.edit-glass');
+                if (glassBtnMobile) {
+                    glassBtnMobile.addEventListener('click', this.handleNextClick);
+                }
+            }
+        }
 
 
         updateTabContent();
@@ -1294,6 +1309,7 @@ class App {
                 frame.addEventListener('click', () => {
                     updateActiveState(index, doorCatalogsDesktop, doorCatalogsMobile)
                     this.currentCatalog = index;
+                    this.handleNextClick()
                     console.log(this.currentCatalog);
                 })
             })
@@ -1301,6 +1317,8 @@ class App {
                 frame.addEventListener('click', () => {
                     updateActiveState(index, doorCatalogsDesktop, doorCatalogsMobile)
                     this.currentCatalog = index
+                    this.handleNextClick()
+
                 })
             })
 
@@ -1313,6 +1331,9 @@ class App {
             doorCatalogsMobile[index].classList.add('active')
         }
     }
+
+
+    
 
 }
 
