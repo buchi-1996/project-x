@@ -52,7 +52,7 @@ export const frames = [
         title: "Double-wing door with right panel",
         image: "./assets/images/frames/frame-sample-9.png",
         form: [1, 1, 0],
-    },
+    }
 ]
 
 export const houseFronts = [
@@ -143,7 +143,7 @@ export const catalogs = [
                 id: 5,
                 modelNumber: '6804-54',
                 image: 'assets/images/door-models/modern/f0a13962-4c35-41fb-8ecf-a1f83941c4b8.png'
-            },
+            }
         ]
     },
     {
@@ -178,7 +178,7 @@ export const catalogs = [
             {
                 modelNumber: '2532-95',
                 image: 'assets/images/door-models/glass-and-elegance/e3b14056-00ca-479c-8d79-f674440e86ea.png'
-            },
+            }
         ]
     },
     {
@@ -248,11 +248,55 @@ export const catalogs = [
             {
                 modelNumber: '4905-15',
                 image: 'assets/images/door-models/classic/b696c24e-2f1b-419c-a034-3e59aea80dc9.png'
-            },
+            }
         ]
     },
 ]
 
 export const glasses = [
-
+    {
+        id: 0,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee837a1b3368accc5a5aa.png'
+    },
+    {
+        id: 1,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee837a1b3368accc5a5b6.png'
+    },
+    {
+        id: 2,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee837a1b3368accc5a5ba.png'
+    },
+    {
+        id: 3,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee837a1b3368accc5a5be.png'
+    },
+    {
+        id: 4,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee837a1b3368accc5a596.png'
+    },
+    {
+        id: 5,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee838a1b3368accc5a5d6.png'
+    },
+    {
+        id: 6,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee838a1b3368accc5a5ee.png'
+    },
+    {
+        id: 7,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee838a1b3368accc5a5fa.png'
+    },
+    {
+        id: 8,
+        title: 'glass name',
+        image: 'assets/images/glasses/513ee838a1b3368accc5a61a.png'
+    }
 ]

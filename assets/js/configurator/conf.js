@@ -1,4 +1,5 @@
-import { frames, houseFronts, catalogs } from './api.js';
+import { frames, houseFronts, catalogs, glasses } from './api.js';
+import { handleLoad } from './utils.js';
 
 class App {
     constructor() {
@@ -191,7 +192,7 @@ class App {
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src=${model.image} alt="">
+                                    <div class="blurred-img"><img src=${model.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                                     <small>${model.modelNumber}</small>
                                 </li>`
                 )).join('')}
@@ -212,28 +213,10 @@ class App {
                     </li>`
                 )).join('')}
                             </ul>`,
-                sidepanel1: `<div class="edit-glass">
+                sidepanel: `<div class="edit-glass">
                                 <img src="./assets/images/glassseitenteile.png" alt="">
                                 <button class="btn btn-outline">Select glass side panel</button>
-                            </div>`,
-                sidePanel2: `<ul class="door_model-images side_panel">
-                                <li class="door_model-image side_panel-image">
-                                    <span class="selected">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                          </svg>                                  
-                                    </span>
-                                    <img src="./assets/images/side-panels/98c16943-3589-4844-b034-fb204ee2bdf4.png" alt="">
-                                </li>
-                                <li class="door_model-image side_panel-image">
-                                <span class="selected">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                          </svg>                                  
-                                    </span>
-                                    <img src="./assets/images/side-panels/df4d1e83-14c3-44f0-979d-af43c5d1c6d9.png" alt="">
-                                </li>
-                             </ul>`
+                            </div>`
             },
             {
                 id: 5,
@@ -245,7 +228,56 @@ class App {
                                     d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />
                             </svg>
                         </span>`,
-                content: `<p>some glass materials displayed here</p>`
+                content: `<div class="door_glasses">
+                        <div class="door_glasses-options">
+                        ${this.createFrameTabButtons(this.selectedFrameForm)}
+                        </div>
+                        <div class="door_glasses-contents">
+                            <!-- Dynamic content -->
+                            <ul class="door_glasses-images">
+                            ${glasses.map(glass => (
+                    `<li class="door_glasses-image">
+                                    <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
+                                    <img src=${glass.image} alt="">
+                                    <small>${glass.title}</small>
+                                </li>`
+                )).join('')}
+                                
+                            </ul>
+                        </div>
+                     </div>`,
+                door: `<ul class="door_glasses-images">
+                            ${glasses.map(glass => (
+                    `<li class="door_glasses-image">
+                                    <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
+                                    <img src=${glass.image} alt="">
+                                    <small>${glass.title}</small>
+                                </li>`
+                )).join('')}
+                                
+            </ul>`,
+                sidePanel: `<ul class="door_glasses-images">
+                            ${glasses.map(glass => (
+                    `<li class="door_glasses-image">
+                                    <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
+                                    <img src=${glass.image} alt="">
+                                    <small>${glass.title}</small>
+                                </li>`
+                )).join('')}
+                                
+                            </ul>`
             },
             {
                 id: 6,
@@ -664,26 +696,37 @@ class App {
                         </button>`;
                 }
             });
+        }else{
+            return ''
         }
 
         return buttonsMarkup;
     }
 
-    updateFrameTabButtons = (currentMenu) => {
-        if (currentMenu === +this.currentMenuItem) {
+    updateFrameTabButtons = () => {
+        if (+this.currentMenuItem === 4) {
             document.querySelector('.tools_sidebar-content .door_model-options').innerHTML = this.createFrameTabButtons(this.selectedFrameForm)
             document.querySelector('.mobile_tools-bar .door_model-options').innerHTML = this.createFrameTabButtons(this.selectedFrameForm)
             this.currentTab = this.selectedFrameForm.indexOf(1)
             this.handleModelSelection()
 
         }
+
+        if (+this.currentMenuItem === 5) {
+            document.querySelector('.tools_sidebar-content .door_glasses-options').innerHTML = this.createFrameTabButtons(this.selectedFrameForm)
+            document.querySelector('.mobile_tools-bar .door_glasses-options').innerHTML = this.createFrameTabButtons(this.selectedFrameForm)
+            this.currentTab = this.selectedFrameForm.indexOf(1)
+            this.handleGlassesSelection()
+
+        }
     }
 
 
-    updateCatalogModels = (currentMenu) => {
+    updateTabContentsOnMenuChange = () => {
         // console.log(document.querySelector('.tools_sidebar-content .door_model-images'));
-        if (currentMenu === +this.currentMenuItem){
-            this.doorItemMenus[currentMenu].door = `<ul class="door_model-images">
+        
+        if ( +this.currentMenuItem === 4) {
+            this.doorItemMenus[4].door = `<ul class="door_model-images">
             ${catalogs[this.currentCatalog].models.map(model => (
                 `<li class="door_model-image">
                     <span class="selected">
@@ -691,13 +734,46 @@ class App {
                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                           </svg>                                  
                     </span>
-                    <img src=${model.image} alt="">
+                    <div class="blurred-img"><img src=${model.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
+
                     <small>${model.modelNumber}</small>
                 </li>`
             )).join('')}
         </ul>`
-               
+
             this.handleModelSelection()
+        }
+
+        if(+this.currentMenuItem === 5){
+            this.doorItemMenus[5].door = `<ul class="door_glasses-images">
+                            ${glasses.map(glass => (
+                    `<li class="door_glasses-image">
+                                    <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
+                                    <img src=${glass.image} alt="">
+                                    <small>${glass.title}</small>
+                                </li>`
+                )).join('')}
+                                
+            </ul>`
+
+            this.doorItemMenus[5].sidePanel = `<ul class="door_glasses-images">
+                            ${glasses.map(glass => (
+                    `<li class="door_glasses-image">
+                                    <span class="selected">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>                                  
+                                    </span>
+                                    <img src=${glass.image} alt="">
+                                    <small>${glass.title}</small>
+                                </li>`
+                )).join('')}
+                                
+            </ul>`
         }
 
     }
@@ -1065,24 +1141,25 @@ class App {
         this.handleModelSelection()
         this.handleDoorFrameSelection()
         this.handleCatalogSelection()
-        this.updateFrameTabButtons(4)
-        this.updateCatalogModels(4)
+        this.handleGlassesSelection()
+        this.updateFrameTabButtons()
+        this.updateTabContentsOnMenuChange()
     }
 
 
     // =====================================================================
     // Model Selection
     // ========================================================================
-    handleModelSelection = () => {
-        // Handle Tab change
-        const tabButtonsDesktop = document.querySelectorAll('.tools_sidebar-content .door_model-options button');
-        const tabButtonsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-options button');
+
+    handleGlassesSelection = () => {
+        const tabButtonsDesktop = document.querySelectorAll('.tools_sidebar-content .door_glasses-options button');
+        const tabButtonsMobile = document.querySelectorAll('.mobile_tools-bar .door_glasses-options button');
 
         // Add active class to the current tab on load
         console.log(this.currentTab);
         if (tabButtonsDesktop.length > 0) {
             tabButtonsDesktop[this.currentTab].classList.add('active');
-        } else { console.log('passed') }
+        }
         if (tabButtonsMobile.length > 0) {
             tabButtonsMobile[this.currentTab].classList.add('active');
         }
@@ -1099,7 +1176,6 @@ class App {
             this.currentTab = index;
             console.log('Tab clicked', this.currentTab, this.currentSelectedIndices);
             updateTabContent();
-            moveToGlassMenu()
             onTabSwitch();
         };
 
@@ -1132,7 +1208,7 @@ class App {
         // Function to update the active class for the selected item
         const updateActiveClass = (index, door, doorModelsDesktop, doorModelsMobile) => {
             // Update the current selected item index for the active tab
-            this.currentDoorModel = index;
+            this.currentSelectedIndices[this.currentTab] = index;
 
             // Remove "active" class from all items
             doorModelsDesktop.forEach(d => d.classList.remove('active'));
@@ -1154,22 +1230,22 @@ class App {
 
         // Function to update the tab content based on the currentTab
         const updateTabContent = () => {
-            const desktopContent = document.querySelector('.tools_sidebar .door_model-contents');
-            const mobileContent = document.querySelector('.mobile_tools-bar .door_model-contents');
+            const desktopContent = document.querySelector('.tools_sidebar .door_glasses-contents');
+            const mobileContent = document.querySelector('.mobile_tools-bar .door_glasses-contents');
 
             if (desktopContent) {
                 if (this.selectedFrameForm[this.currentTab] === 1) {
-                    desktopContent.innerHTML = !catalogs[this.currentCatalog].models.length ? `<p>No models for the selected catalog</p>` : this.doorItemMenus[4].door;
+                    desktopContent.innerHTML = !glasses.length ? `<p>Glass list empty</p>` : this.doorItemMenus[5].door;
                 } else {
-                    desktopContent.innerHTML = this.doorItemMenus[4].sidepanel1;
+                    desktopContent.innerHTML = !glasses.length ? `<p>Glass list empty</p>` : this.doorItemMenus[5].sidePanel;
                 }
             }
 
             if (mobileContent) {
                 if (this.selectedFrameForm[this.currentTab] === 1) {
-                    mobileContent.innerHTML = !catalogs[this.currentCatalog].models.length ? `<p>No models for the selected catalog</p>` : this.doorItemMenus[4].door;
+                    mobileContent.innerHTML = !glasses.length ? `<p>Glass list empty</p>` : this.doorItemMenus[5].door;
                 } else {
-                    mobileContent.innerHTML = this.doorItemMenus[4].sidepanel1;
+                    mobileContent.innerHTML = !glasses.length ? `<p>Glass list empty</p>` : this.doorItemMenus[5].sidePanel;
                 }
             }
         };
@@ -1178,69 +1254,210 @@ class App {
         const onTabSwitch = () => {
             // Desktop
             if (this.sidebarModalContents && this.sidebarModalContents.firstElementChild &&
-                this.sidebarModalContents.firstElementChild.classList.contains('door_model')) {
+                this.sidebarModalContents.firstElementChild.classList.contains('door_glasses')) {
 
-                const doorModelsDesktop = document.querySelectorAll('.tools_sidebar .door_model-image');
-                const doorModelsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-image');
+                const doorGlassesDesktop = document.querySelectorAll('.tools_sidebar .door_glasses-image');
+                const doorGlassesMobile = document.querySelectorAll('.mobile_tools-bar .door_glasses-image');
 
-                if (doorModelsDesktop.length > 0 && doorModelsMobile.length > 0) {
+                if (doorGlassesDesktop.length > 0 && doorGlassesMobile.length > 0) {
                     // Set the current selected item as active for the active tab
-                    if (this.currentDoorModel < doorModelsDesktop.length) {
-                        doorModelsDesktop[this.currentDoorModel].classList.add('active');
+                    if (this.currentSelectedIndices[this.currentTab] < doorGlassesDesktop.length) {
+                        doorGlassesDesktop[this.currentSelectedIndices[this.currentTab]].classList.add('active');
                     }
-                    if (this.currentDoorModel < doorModelsMobile.length) {
-                        doorModelsMobile[this.currentDoorModel].classList.add('active');
+                    if (this.currentSelectedIndices[this.currentTab] < doorGlassesMobile.length) {
+                        doorGlassesMobile[this.currentSelectedIndices[this.currentTab]].classList.add('active');
                     }
-                    syncActiveClass(doorModelsDesktop, doorModelsMobile);
-                } 
+                    syncActiveClass(doorGlassesDesktop, doorGlassesMobile);
+                }
             }
 
             // Handle mobile view
             if (this.mobileModalContents && this.mobileModalContents.firstElementChild &&
-                this.mobileModalContents.firstElementChild.classList.contains('door_model')) {
+                this.mobileModalContents.firstElementChild.classList.contains('door_glasses')) {
 
-                const doorModelsDesktop = document.querySelectorAll('.tools_sidebar .door_model-image');
-                const doorModelsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-image');
+                const doorGlassesDesktop = document.querySelectorAll('.tools_sidebar .door_glasses-image');
+                const doorGlassesMobile = document.querySelectorAll('.mobile_tools-bar .door_glasses-image');
 
-                if (doorModelsMobile.length > 0 && doorModelsDesktop.length > 0) {
+                if (doorGlassesMobile.length > 0 && doorGlassesDesktop.length > 0) {
                     // Set the current selected item as active for the active tab
-                    if (this.currentDoorModel < doorModelsMobile.length) {
-                        doorModelsMobile[this.currentDoorModel].classList.add('active');
+                    if (this.currentSelectedIndices[this.currentTab] < doorGlassesMobile.length) {
+                        doorGlassesMobile[this.currentSelectedIndices[this.currentTab]].classList.add('active');
                     }
-                    if (this.currentDoorModel < doorModelsDesktop.length) {
-                        doorModelsDesktop[this.currentDoorModel].classList.add('active');
+                    if (this.currentSelectedIndices[this.currentTab] < doorGlassesDesktop.length) {
+                        doorGlassesDesktop[this.currentSelectedIndices[this.currentTab]].classList.add('active');
                     }
-                    syncActiveClass(doorModelsMobile, doorModelsDesktop);
-                }
-            }
-
-            if (this.mobileModalContents && this.mobileModalContents.firstElementChild &&
-                this.mobileModalContents.firstElementChild.classList.contains('edit-glass')){
-
-                    console.log(document.querySelector('.edit-glass'))
-                }
-
-        };
-
-        const moveToGlassMenu = () => {
-            const desktopContent = document.querySelector('.tools_sidebar .door_model-contents');
-            const mobileContent = document.querySelector('.mobile_tools-bar .door_model-contents');
-
-            if (desktopContent && desktopContent.firstElementChild && desktopContent.firstElementChild.classList.contains('edit-glass')) {
-                const glassBtnDesktop = desktopContent.querySelector('.edit-glass');
-                if (glassBtnDesktop) {
-                    glassBtnDesktop.addEventListener('click', this.handleNextClick);
-                }
-            }
-        
-            if (mobileContent && mobileContent.firstElementChild && mobileContent.firstElementChild.classList.contains('edit-glass')) {
-                const glassBtnMobile = mobileContent.querySelector('.edit-glass');
-                if (glassBtnMobile) {
-                    glassBtnMobile.addEventListener('click', this.handleNextClick);
+                    syncActiveClass(doorGlassesMobile, doorGlassesDesktop);
                 }
             }
         }
 
+            updateTabContent();
+            onTabSwitch();
+
+        }
+
+
+        handleModelSelection = () => {
+            // Handle Tab change
+            const tabButtonsDesktop = document.querySelectorAll('.tools_sidebar-content .door_model-options button');
+            const tabButtonsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-options button');
+
+            // Add active class to the current tab on load
+            console.log(this.currentTab);
+            if (tabButtonsDesktop.length > 0) {
+                tabButtonsDesktop[this.currentTab].classList.add('active');
+            }
+            if (tabButtonsMobile.length > 0) {
+                tabButtonsMobile[this.currentTab].classList.add('active');
+            }
+
+            const handleTabClick = (index) => {
+                tabButtonsDesktop.forEach(btn => btn.classList.remove('active'));
+                tabButtonsMobile.forEach(btn => btn.classList.remove('active'));
+                if (index < tabButtonsDesktop.length) {
+                    tabButtonsDesktop[index].classList.add('active');
+                }
+                if (index < tabButtonsMobile.length) {
+                    tabButtonsMobile[index].classList.add('active');
+                }
+                this.currentTab = index;
+                updateTabContent();
+                moveToGlassMenu()
+                onTabSwitch();
+            };
+
+            tabButtonsDesktop.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    handleTabClick(index);
+                });
+            });
+
+            tabButtonsMobile.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    handleTabClick(index);
+                });
+            });
+
+            const syncActiveClass = (doorModelsDesktop, doorModelsMobile) => {
+                doorModelsDesktop.forEach((door, index) => {
+                    door.addEventListener('click', () => {
+                        updateActiveClass(index, door, doorModelsDesktop, doorModelsMobile);
+                    });
+                });
+
+                doorModelsMobile.forEach((door, index) => {
+                    door.addEventListener('click', () => {
+                        updateActiveClass(index, door, doorModelsDesktop, doorModelsMobile);
+                    });
+                });
+            };
+
+            // Function to update the active class for the selected item
+            const updateActiveClass = (index, door, doorModelsDesktop, doorModelsMobile) => {
+                // Update the current selected item index for the active tab
+                this.currentDoorModel = index;
+
+                // Remove "active" class from all items
+                doorModelsDesktop.forEach(d => d.classList.remove('active'));
+                doorModelsMobile.forEach(d => d.classList.remove('active'));
+
+                // Add "active" class to the clicked item
+                if (index >= 0) {
+                    if (index < doorModelsDesktop.length) {
+                        doorModelsDesktop[index].classList.add('active');
+                    }
+                    if (index < doorModelsMobile.length) {
+                        doorModelsMobile[index].classList.add('active');
+                    }
+                }
+
+                // Call your Function to update Door on the House Model Here
+                console.log('Clicked door index:', door, index);
+            };
+
+            // Function to update the tab content based on the currentTab
+            const updateTabContent = () => {
+                const desktopContent = document.querySelector('.tools_sidebar .door_model-contents');
+                const mobileContent = document.querySelector('.mobile_tools-bar .door_model-contents');
+
+                if (desktopContent) {
+                    if (this.selectedFrameForm[this.currentTab] === 1) {
+                        desktopContent.innerHTML = !catalogs[this.currentCatalog].models.length ? `<p>No models for the selected catalog</p>` : this.doorItemMenus[4].door;
+                    } else {
+                        desktopContent.innerHTML = this.doorItemMenus[4].sidepanel;
+                    }
+                }
+
+                if (mobileContent) {
+                    if (this.selectedFrameForm[this.currentTab] === 1) {
+                        mobileContent.innerHTML = !catalogs[this.currentCatalog].models.length ? `<p>No models for the selected catalog</p>` : this.doorItemMenus[4].door;
+                    } else {
+                        mobileContent.innerHTML = this.doorItemMenus[4].sidepanel;
+                    }
+                }
+            };
+
+            // Call onTabSwitch Func
+            const onTabSwitch = () => {
+                // Desktop
+                if (this.sidebarModalContents && this.sidebarModalContents.firstElementChild &&
+                    this.sidebarModalContents.firstElementChild.classList.contains('door_model')) {
+
+                    const doorModelsDesktop = document.querySelectorAll('.tools_sidebar .door_model-image');
+                    const doorModelsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-image');
+
+                    if (doorModelsDesktop.length > 0 && doorModelsMobile.length > 0) {
+                        // Set the current selected item as active for the active tab
+                        if (this.currentDoorModel < doorModelsDesktop.length) {
+                            doorModelsDesktop[this.currentDoorModel].classList.add('active');
+                        }
+                        if (this.currentDoorModel < doorModelsMobile.length) {
+                            doorModelsMobile[this.currentDoorModel].classList.add('active');
+                        }
+                        syncActiveClass(doorModelsDesktop, doorModelsMobile);
+                    }
+                }
+
+                // Handle mobile view
+                if (this.mobileModalContents && this.mobileModalContents.firstElementChild &&
+                    this.mobileModalContents.firstElementChild.classList.contains('door_model')) {
+
+                    const doorModelsDesktop = document.querySelectorAll('.tools_sidebar .door_model-image');
+                    const doorModelsMobile = document.querySelectorAll('.mobile_tools-bar .door_model-image');
+
+                    if (doorModelsMobile.length > 0 && doorModelsDesktop.length > 0) {
+                        // Set the current selected item as active for the active tab
+                        if (this.currentDoorModel < doorModelsMobile.length) {
+                            doorModelsMobile[this.currentDoorModel].classList.add('active');
+                        }
+                        if (this.currentDoorModel < doorModelsDesktop.length) {
+                            doorModelsDesktop[this.currentDoorModel].classList.add('active');
+                        }
+                        syncActiveClass(doorModelsMobile, doorModelsDesktop);
+                    }
+                }
+
+            };
+
+            const moveToGlassMenu = () => {
+                const desktopContent = document.querySelector('.tools_sidebar .door_model-contents');
+                const mobileContent = document.querySelector('.mobile_tools-bar .door_model-contents');
+
+                if (desktopContent && desktopContent.firstElementChild && desktopContent.firstElementChild.classList.contains('edit-glass')) {
+                    const glassBtnDesktop = desktopContent.querySelector('.edit-glass');
+                    if (glassBtnDesktop) {
+                        glassBtnDesktop.addEventListener('click', this.handleNextClick);
+                    }
+                }
+
+                if (mobileContent && mobileContent.firstElementChild && mobileContent.firstElementChild.classList.contains('edit-glass')) {
+                    const glassBtnMobile = mobileContent.querySelector('.edit-glass');
+                    if (glassBtnMobile) {
+                        glassBtnMobile.addEventListener('click', this.handleNextClick);
+                    }
+                }
+            }
+    
 
         updateTabContent();
         onTabSwitch();
@@ -1333,7 +1550,7 @@ class App {
     }
 
 
-    
+
 
 }
 

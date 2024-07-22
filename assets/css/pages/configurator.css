@@ -956,12 +956,12 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     z-index: 99999;
     gap: 10px;
-    margin-bottom: 30px;
 }
 
 .door_model-options button{
     font-size: .8rem;
     padding: 8px 3px;
+    margin-bottom: 30px;
     background: transparent;
     border: 1px solid #fff;
     color: #fff;
@@ -1048,6 +1048,75 @@
     object-fit: contain;
 }
 
+
+/* Door Glasses */
+
+
+.door_glasses .door_glasses-options{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    z-index: 99999;
+    gap: 10px;
+}
+
+.door_glasses-options button{
+    font-size: .8rem;
+    padding: 8px 3px;
+    margin-bottom: 30px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    transition: all .1s ease-in
+}
+
+.door_glasses-options button.active{
+    color: #fff;
+    background: #2E4CFA;
+    border: 1px solid var(--primary-color);
+}
+
+.door_glasses-images{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
+    column-gap: 14px;
+}
+
+
+
+.door_glasses-images .door_glasses-image{
+    position: relative;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.door_glasses-image .selected {
+    display: none; /* Hide the tick icon by default */
+}
+
+.door_glasses-image.active .selected {
+    display: flex;
+    align-items: center;
+    justify-content: center /* Show the tick icon when the list item is active */
+}
+
+.door_glasses-image img{
+    width: 100%;
+    height: 100%;
+    background: var(--black-opacity);
+    object-fit: contain;
+}
+
+.door_glasses-images .door_glasses-image:hover{
+    transform: scale(0.9);
+}
+
+
+.door_glasses-images .door_glasses-image small{
+    margin-top: 20px;
+}
 
 
 
