@@ -10,6 +10,7 @@ class App {
         this.currentSelectedIndices = [0, 0, 0];
         this.currentDoorModel = 0
         this.currentCatalog = 0
+        this.currentHouseFront = 0
         this.settingsTitle;
         this.currentMenuItem = 0;
         this.sidebarSettingsModal = document.querySelector('.tools_sidebar')
@@ -56,13 +57,13 @@ class App {
                 content: `<ul class="door-frames">
                         
                         ${frames.map(frame => (
-                    `<li class="door-frame">
+                    `<li class="door-frame ">
                             <span class="selected">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                   </svg>                                  
                             </span>
-                            <img src=${frame.image} alt="">
+                            <div class="blurred-img"><img src=${frame.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                             <small>${frame.title}</small>
                         </li>`
                 )).join('')}
@@ -119,7 +120,7 @@ class App {
                             </svg>  
                         </span>`,
                 content: `<!-- Upload House Front -->
-                    <form>
+                    <form class="upload-house">
                         <label for="house-sample" class="house-sample">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -143,7 +144,7 @@ class App {
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                   </svg>                                  
                             </span>
-                            <img src=${front.image.single} alt="">
+                            <div class="blurred-img"><img src=${front.image.single} onload="handleLoad(event)" loading="lazy" alt=""></div>
                         </li>`
                 )).join('')}
                     </ul>`
@@ -164,7 +165,7 @@ class App {
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                   </svg>                                  
                             </span>
-                            <img src=${catalog.image} alt="">
+                            <div class="blurred-img"><img src=${catalog.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                             <small>${catalog.title}</small>
                         </li>`
                 )).join('')}                    
@@ -208,7 +209,7 @@ class App {
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                               </svg>                                  
                         </span>
-                        <img src=${model.image} alt="">
+                        <div class="blurred-img"><img src=${model.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                         <small>${model.modelNumber}</small>
                     </li>`
                 )).join('')}
@@ -242,7 +243,7 @@ class App {
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src=${glass.image} alt="">
+                                    <div class="blurred-img"><img src=${glass.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                                     <small>${glass.title}</small>
                                 </li>`
                 )).join('')}
@@ -258,7 +259,7 @@ class App {
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src=${glass.image} alt="">
+                                     <div class="blurred-img"><img src=${glass.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                                     <small>${glass.title}</small>
                                 </li>`
                 )).join('')}
@@ -272,12 +273,11 @@ class App {
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src=${glass.image} alt="">
+                                    <div class="blurred-img"><img src=${glass.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                                     <small>${glass.title}</small>
                                 </li>`
                 )).join('')}
-                                
-                            </ul>`
+                </ul>`
             },
             {
                 id: 6,
@@ -753,7 +753,7 @@ class App {
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src=${glass.image} alt="">
+                                    <div class="blurred-img"><img src=${glass.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
                                     <small>${glass.title}</small>
                                 </li>`
                 )).join('')}
@@ -768,7 +768,8 @@ class App {
                                             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                           </svg>                                  
                                     </span>
-                                    <img src=${glass.image} alt="">
+                                    <div class="blurred-img"><img src=${glass.image} onload="handleLoad(event)" loading="lazy" alt=""></div>
+
                                     <small>${glass.title}</small>
                                 </li>`
                 )).join('')}
@@ -1138,6 +1139,7 @@ class App {
     }
 
     getCurrentToolsBarContent = () => {
+        this.handleHouseFrontSelection()
         this.handleModelSelection()
         this.handleDoorFrameSelection()
         this.handleCatalogSelection()
@@ -1522,16 +1524,16 @@ class App {
             doorCatalogsDesktop[this.currentCatalog].classList.add('active')
             doorCatalogsMobile[this.currentCatalog].classList.add('active')
 
-            doorCatalogsDesktop.forEach((frame, index) => {
-                frame.addEventListener('click', () => {
+            doorCatalogsDesktop.forEach((catalog, index) => {
+                catalog.addEventListener('click', () => {
                     updateActiveState(index, doorCatalogsDesktop, doorCatalogsMobile)
                     this.currentCatalog = index;
                     this.handleNextClick()
                     console.log(this.currentCatalog);
                 })
             })
-            doorCatalogsMobile.forEach((frame, index) => {
-                frame.addEventListener('click', () => {
+            doorCatalogsMobile.forEach((catalog, index) => {
+                catalog.addEventListener('click', () => {
                     updateActiveState(index, doorCatalogsDesktop, doorCatalogsMobile)
                     this.currentCatalog = index
                     this.handleNextClick()
@@ -1541,14 +1543,48 @@ class App {
 
         }
         const updateActiveState = (index, doorCatalogsDesktop, doorCatalogsMobile) => {
-            doorCatalogsDesktop.forEach(frame => frame.classList.remove('active'))
-            doorCatalogsMobile.forEach(frame => frame.classList.remove('active'))
+            doorCatalogsDesktop.forEach(catalog => catalog.classList.remove('active'))
+            doorCatalogsMobile.forEach(catalog => catalog.classList.remove('active'))
 
             doorCatalogsDesktop[index].classList.add('active')
             doorCatalogsMobile[index].classList.add('active')
         }
     }
 
+    handleHouseFrontSelection = () => {
+        if (this.sidebarModalContents && this.sidebarModalContents.firstElementChild &&
+            this.sidebarModalContents.firstElementChild.classList.contains('upload-house')) {
+
+                const doorHouseFrontDesktop = document.querySelectorAll('.tools_sidebar-content .house-fronts .house-front')
+                const doorHouseFrontMobile = document.querySelectorAll('.mobile_tools-bar .house-fronts .house-front')
+
+                doorHouseFrontDesktop[this.currentHouseFront].classList.add('active')
+                doorHouseFrontMobile[this.currentHouseFront].classList.add('active')
+
+                doorHouseFrontDesktop.forEach((front, index) => {
+                    front.addEventListener('click', () => {
+                        updateActiveState(index, doorHouseFrontDesktop, doorHouseFrontMobile)
+                        this.currentHouseFront = index;
+                        alert('selected');
+                    })
+                })
+                doorHouseFrontMobile.forEach((front, index) => {
+                    front.addEventListener('click', () => {
+                        updateActiveState(index, doorHouseFrontDesktop, doorHouseFrontMobile)
+                        this.currentHouseFront = index
+    
+                    })
+                })
+            }
+
+            const updateActiveState = (index, doorHouseFrontDesktop, doorHouseFrontMobile) => {
+                doorHouseFrontDesktop.forEach(front => front.classList.remove('active'))
+                doorHouseFrontMobile.forEach(front => front.classList.remove('active'))
+    
+                doorHouseFrontDesktop[index].classList.add('active')
+                doorHouseFrontMobile[index].classList.add('active')
+            }   
+    }
 
 
 
