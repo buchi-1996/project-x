@@ -1,3 +1,5 @@
+
+// Door Api Data
 export const frames = [
     {
         id: 0,
@@ -299,4 +301,39 @@ export const glasses = [
         title: 'glass name',
         image: 'assets/images/glasses/513ee838a1b3368accc5a61a.png'
     }
+]
+
+
+// Window Api Data
+export const windowFrames = [
+    {
+        id: 0,
+        title: 'Frame 1',
+        image: 'assets/images/window-f/frame-1.png'
+    },
+    {
+        id: 1,
+        title: 'Frame 2',
+        image: 'assets/images/window-f/frame-2.png'
+    },
+    {
+        id: 2,
+        title: 'Frame 3',
+        image: 'assets/images/window-f/frame-3.png'
+    },
+    {
+        id: 3,
+        title: 'Frame 4',
+        image: 'assets/images/window-f/frame-4.png'
+    },
+    {
+        id: 4,
+        title: 'Frame 5',
+        image: 'assets/images/window-f/frame-5.png'
+    },
+    {
+        id: 5,
+        title: 'Frame 6',
+        image: 'assets/images/window-f/frame-6.png'
+    },
 ]

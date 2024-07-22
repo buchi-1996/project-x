@@ -1134,6 +1134,34 @@
 
 
 
+/* Window CSS */
+.window-frames{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 14px;
+    row-gap: 24px;
+    list-style-type: none;
+
+    
+}
+
+.window-frames .window-frame{
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.window-frame small{
+    font-size: .7rem;
+    text-align: center !important;
+}
+
+.window-frames .window-frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 
 
