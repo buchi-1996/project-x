@@ -64,6 +64,7 @@
     display: grid;
     place-items: center;
     background: blue;
+    z-index: 999;
 }
 
 .selected svg{
